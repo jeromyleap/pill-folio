@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useId, useState } from "react";
 import { ArrowUpRight, X } from "lucide-react";
 
 import { stackLabel, type Project } from "@/data/projects";
 import { GalleryArt } from "@/components/illustrations";
 import { LiveMetadata } from "@/components/live-metadata";
 import { ScreenshotFrame } from "@/components/screenshot-frame";
+import { useCardFocus } from "@/components/use-card-focus";
+import { WristedCard } from "@/components/wristed-card";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -18,9 +20,21 @@ export function ProjectCard({
   project: Project;
   onClose: () => void;
 }) {
+  if (project.id === "wristed") {
+    return <WristedCard project={project} onClose={onClose} />;
+  }
+  return <PastelCard project={project} onClose={onClose} />;
+}
+
+function PastelCard({
+  project,
+  onClose,
+}: {
+  project: Project;
+  onClose: () => void;
+}) {
   const titleId = useId();
-  const closeRef = useRef<HTMLButtonElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
+  const { cardRef, closeRef } = useCardFocus<HTMLDivElement>(project.id);
   const [preview, setPreview] = useState<string | null>(null);
   const frameSrc = preview ?? project.screenshot;
   const frameCaption = preview
@@ -28,22 +42,6 @@ export function ProjectCard({
     : project.screenshot
       ? "Saved screenshot"
       : "Illustrated preview";
-
-  useEffect(() => {
-    const card = cardRef.current;
-    if (!card) return;
-    const rect = card.getBoundingClientRect();
-    const hidden = rect.top > window.innerHeight - 120 || rect.bottom < 80;
-    if (hidden) {
-      card.scrollIntoView({
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-          ? "auto"
-          : "smooth",
-        block: "start",
-      });
-    }
-    closeRef.current?.focus({ preventScroll: true });
-  }, [project.id]);
 
   return (
     <div

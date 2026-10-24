@@ -147,15 +147,16 @@ export const projects: Project[] = [
     shortLabel: "Tu",
     lidName: "Wristed",
     title: "Wristed",
-    eyebrow: "wristed.app",
+    eyebrow: "AI × Fashion Tech",
     description:
-      "A custom smartwatch face generator. Upload an outfit photo and Wristed designs faces to match — a PWA for Apple Watch, Samsung Galaxy Watch, and the rest of the wrist. The live app calls itself an AI stylist for your wrist.",
-    value: "Watch faces cut to match the outfit in the photo.",
-    tech: ["PWA", "Watch faces", "Outfit matching"],
+      "An AI stylist for your wrist. Turn an outfit photo into custom smartwatch face designs that match your look.",
+    value: "Match your watch to your outfit.",
+    tech: ["React", "TypeScript", "OpenAI", "PostgreSQL"],
     liveUrl: "https://wristed.app",
     screenshot: "/screenshots/wristed.jpg",
     screenshotAlt:
-      "Apple Watch with a Wristed-styled watch face, shown with gold bracelets",
+      "Wristed smartwatch face artwork shown on a watch with purple styling.",
+    logo: "/brand/wristed-icon.png",
     theme: {
       lid: "#f8c8a8",
       deep: "#e08a62",

@@ -11,6 +11,8 @@
   --font-mono: ui-monospace, monospace;
   --font-display: var(--font-fredoka), "Fredoka", ui-rounded, sans-serif;
   --font-heading: var(--font-fredoka), "Fredoka", ui-rounded, sans-serif;
+  --font-wristed-heading: var(--font-outfit), "Outfit", sans-serif;
+  --font-wristed-body: var(--font-inter), "Inter", sans-serif;
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-paper: var(--paper);
