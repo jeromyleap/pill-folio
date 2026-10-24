@@ -138,7 +138,10 @@ export function Portfolio({ projects }: { projects: Project[] }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: reduce ? 0.12 : 0.2 }}
+            transition={{
+              duration: reduce ? 0.12 : 0.28,
+              delay: reduce ? 0.35 : 0.55,
+            }}
           >
             <button
               type="button"
@@ -172,13 +175,14 @@ export function Portfolio({ projects }: { projects: Project[] }) {
                   }
                   transition={
                     reduce
-                      ? { duration: 0.15 }
+                      ? { duration: 0.15, delay: 0.35 }
                       : {
+                          // Wait for the 3D spill (pills release ~0.12–0.35s) before the card pops.
                           type: "spring",
-                          stiffness: 220,
-                          damping: 22,
-                          mass: 0.9,
-                          delay: 0.22,
+                          stiffness: 160,
+                          damping: 24,
+                          mass: 1.05,
+                          delay: 0.62,
                         }
                   }
                   style={{ transformOrigin: "50% 35%" }}
