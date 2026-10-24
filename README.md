@@ -38,6 +38,8 @@ All copy, links, colors, and images live in [`data/projects.ts`](data/projects.t
 - `theme` recolors that day's lid, well, and pills.
 - `liveUrl` turns on the visit link and the live-metadata panel.
 - Saturday gallery tiles use `image` the same way. Leave it unset to keep the illustration.
+- The Memory Thread has its own candlelit card (`components/memory-thread-card.tsx`), with copy, stats, and stack in [`data/memory-thread.ts`](data/memory-thread.ts).
+- Wristed has its own dark, on-brand card (`components/wristed-card.tsx`). Its colors, case-study copy, and stack list live in [`data/wristed.ts`](data/wristed.ts).
 
 ## Live metadata
 

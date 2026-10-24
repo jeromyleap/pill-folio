@@ -8,6 +8,7 @@ import { GalleryArt } from "@/components/illustrations";
 import { LiveMetadata } from "@/components/live-metadata";
 import { ScreenshotFrame } from "@/components/screenshot-frame";
 import { useCardFocus } from "@/components/use-card-focus";
+import { MemoryThreadCard } from "@/components/memory-thread-card";
 import { WristedCard } from "@/components/wristed-card";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -20,6 +21,9 @@ export function ProjectCard({
   project: Project;
   onClose: () => void;
 }) {
+  if (project.id === "memory-thread") {
+    return <MemoryThreadCard project={project} onClose={onClose} />;
+  }
   if (project.id === "wristed") {
     return <WristedCard project={project} onClose={onClose} />;
   }

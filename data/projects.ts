@@ -121,15 +121,16 @@ export const projects: Project[] = [
     shortLabel: "Mo",
     lidName: "Memory",
     title: "The Memory Thread",
-    eyebrow: "thememorythread.org",
+    eyebrow: "Audio guestbook · Family archive",
     description:
-      "Digital archival UX for a private family archive. The Memory Thread is an ad-free sanctuary and audio guestbook for voices, stories, and photographs, with sovereign backups. Memory threads are the product. Supabase is part of the stack underneath.",
-    value: "A private place for voices, stories, and photographs to stay in the family.",
-    tech: ["Supabase", "Archival UX", "Audio guestbook", "Memory threads"],
+      "An ad-free, installable family archive and audio guestbook. Guests scan a QR code and leave a voice message, photos, a song, or a candle — no app download, no login.",
+    value: "Built for quiet moments.",
+    tech: ["React 19", "TypeScript", "Firebase", "PWA"],
     liveUrl: "https://thememorythread.org",
     screenshot: "/screenshots/memory-thread.png",
     screenshotAlt:
       "The Memory Thread — living family archives and audio guestbooks",
+    logo: "/brand/memory-thread-logo.png",
     theme: {
       lid: "#d9c8f0",
       deep: "#8d74b5",

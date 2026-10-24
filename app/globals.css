@@ -13,6 +13,9 @@
   --font-heading: var(--font-fredoka), "Fredoka", ui-rounded, sans-serif;
   --font-wristed-heading: var(--font-outfit), "Outfit", sans-serif;
   --font-wristed-body: var(--font-inter), "Inter", sans-serif;
+  --font-memory-sans: var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-memory-serif: var(--font-playfair), "Playfair Display", Georgia, serif;
+  --font-memory-script: var(--font-great-vibes), "Great Vibes", cursive;
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-paper: var(--paper);

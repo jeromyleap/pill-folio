@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fredoka, Inter, Nunito, Outfit } from "next/font/google";
+import { Fredoka, Great_Vibes, Inter, Nunito, Outfit, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const nunito = Nunito({
@@ -28,6 +28,21 @@ const inter = Inter({
   preload: false,
 });
 
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  weight: ["500", "600", "700"],
+  style: ["normal", "italic"],
+  preload: false,
+});
+
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  variable: "--font-great-vibes",
+  weight: "400",
+  preload: false,
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://nicheleap.com"),
   title: "nicheleap — open a day",
@@ -50,7 +65,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${nunito.variable} ${fredoka.variable} ${outfit.variable} ${inter.variable} h-full antialiased`}
+      className={`${nunito.variable} ${fredoka.variable} ${outfit.variable} ${inter.variable} ${playfair.variable} ${greatVibes.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">{children}</body>
     </html>
