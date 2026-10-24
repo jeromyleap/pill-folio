@@ -2,7 +2,7 @@
 
 import { useId, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, ChevronDown, Moon, Sun, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, X } from "lucide-react";
 
 import type { Project } from "@/data/projects";
 import { memoryThreadCaseStudy as brief } from "@/data/memory-thread";
@@ -31,8 +31,6 @@ export function MemoryThreadCard({
   const reduce = useReducedMotion() ?? false;
   const { cardRef, closeRef } = useCardFocus<HTMLDivElement>(project.id);
   const [notesOpen, setNotesOpen] = useState(false);
-  const [quiet, setQuiet] = useState(false);
-  const dim = cn("transition-opacity duration-500", quiet && "opacity-20 hover:opacity-100 focus-within:opacity-100");
 
   return (
     <div
@@ -78,19 +76,6 @@ export function MemoryThreadCard({
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <Candle reduce={reduce} />
           <button
-            type="button"
-            aria-pressed={quiet}
-            aria-label={quiet ? "Leave quiet mode" : "Quiet mode: dim everything but the light"}
-            title="Quiet mode"
-            onClick={() => setQuiet((value) => !value)}
-            className={cn(
-              "grid size-10 place-items-center rounded-full border border-white/10 bg-white/[0.04] text-[#dfcca7] transition-colors hover:bg-white/10",
-              focusRing,
-            )}
-          >
-            {quiet ? <Sun className="size-4" /> : <Moon className="size-4" />}
-          </button>
-          <button
             ref={closeRef}
             type="button"
             aria-label="Close"
@@ -124,12 +109,12 @@ export function MemoryThreadCard({
           <p className="font-memory-serif text-[1.9rem] leading-tight font-medium text-[#dfcca7] italic sm:text-4xl">
             {brief.tagline}
           </p>
-          <p className={cn("text-[15px] leading-relaxed text-[#cbd5e1]", dim)}>
+          <p className="text-[15px] leading-relaxed text-[#cbd5e1]">
             {project.description}
           </p>
 
 
-          <div className={dim}>
+          <div>
             <p className={kicker}>Built with</p>
             <ul className="mt-2 flex flex-wrap gap-2">
               {project.tech.map((tag) => (
@@ -143,7 +128,7 @@ export function MemoryThreadCard({
             </ul>
           </div>
 
-          <div className={cn("mt-auto flex flex-wrap gap-2 pt-1", dim)}>
+          <div className="mt-auto flex flex-wrap gap-2 pt-1">
             {project.liveUrl ? (
               <a
                 href={project.liveUrl}
