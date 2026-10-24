@@ -233,7 +233,7 @@ export const projects: Project[] = [
     tech: ["PWA", "Tailwind CSS v4", "OKLCH tokens", "RBAC"],
     liveUrl: "https://peachycleanstp.com",
     logo: "/brand/peachy-clean.png",
-    screenshot: "/screenshots/peachy-clean.jpg",
+    screenshot: "/screenshots/peachy-clean-home.jpg",
     screenshotAlt:
       "Peachy Clean homepage: “Spotless spaces, peaceful minds.” beside a welcome sign-in panel",
     theme: {
