@@ -39,8 +39,8 @@ export function BrandDesign({
   return (
     <div>
       <p className={label}>Design</p>
-      <div className="mt-2 flex flex-wrap items-start gap-x-6 gap-y-3">
-        <ul className="flex gap-3">
+      <div className="mt-2 space-y-3">
+        <ul className="flex flex-wrap gap-3">
           {colors.map((swatch) => (
             <li key={swatch.hex} className="flex w-12 flex-col items-center gap-1.5">
               <span
@@ -64,12 +64,12 @@ export function BrandDesign({
           ))}
         </ul>
 
-        <ul className="min-w-0 flex-1 space-y-1.5">
+        <ul className="flex flex-wrap gap-x-5 gap-y-2">
           {fonts.map((font) => (
             <li key={`${font.role}-${font.name}`} className="min-w-0">
               <p
                 className={cn(
-                  "truncate text-[15px] leading-tight",
+                  "truncate text-[15px] leading-tight font-bold",
                   dark ? "text-[#F1F5F9]" : "text-[#09090b]",
                   font.className,
                 )}
@@ -78,7 +78,7 @@ export function BrandDesign({
               </p>
               <p
                 className={cn(
-                  "text-[11px] tracking-wide uppercase",
+                  "text-[11px] font-normal tracking-wide uppercase",
                   dark ? "text-[#8C95A3]" : "text-[#64748b]",
                 )}
               >
