@@ -118,6 +118,7 @@ function PastelCard({
               illustration={project.illustration}
               caption={frameCaption}
               well={project.theme.well}
+              href={project.liveUrl}
             />
           ) : null}
 

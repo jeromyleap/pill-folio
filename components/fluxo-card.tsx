@@ -8,6 +8,7 @@ import type { Project } from "@/data/projects";
 import { fluxoBrief, fluxoCaseStudy, fluxoDesign, fluxoLog, fluxoSchedule } from "@/data/fluxo";
 import { useCardFocus } from "@/components/use-card-focus";
 import { BrandDesign } from "@/components/brand-design";
+import { HeroMediaLink } from "@/components/hero-media-link";
 import { cn } from "@/lib/utils";
 
 const focusRing =
@@ -75,7 +76,7 @@ export function FluxoCard({
       </div>
 
       <div className="grid gap-5 px-4 py-5 sm:px-5 lg:grid-cols-[1fr_1fr] lg:gap-6">
-        <RecoveryPanel />
+        <RecoveryPanel href={project.liveUrl} />
 
         <div className="flex flex-col gap-4">
           <p className="text-[1.9rem] leading-[1.1] font-extrabold tracking-tighter sm:text-4xl">
@@ -326,7 +327,7 @@ export function FluxoMark({ className }: { className?: string }) {
   );
 }
 
-function RecoveryPanel() {
+function RecoveryPanel({ href }: { href?: string }) {
   const reduce = useReducedMotion() ?? false;
   const [tick, setTick] = useState<Phase>(0);
 
@@ -340,6 +341,11 @@ function RecoveryPanel() {
 
   return (
     <figure className="self-start">
+      <HeroMediaLink
+        href={href}
+        label="Open Fluxo live demo"
+        className="rounded-2xl hover:shadow-[0_0_0_2px_rgba(64,224,208,0.55),0_0_40px_rgba(64,224,208,0.35)]"
+      >
       <div aria-hidden className={cn(glass, "overflow-hidden shadow-[0_0_30px_rgba(64,224,208,0.12)]")}>
         <div className="flex items-center justify-between gap-2 border-b border-[#374151]/50 px-4 py-2.5">
           <p className="text-sm font-bold tracking-tight">Today&apos;s schedule</p>
@@ -378,9 +384,10 @@ function RecoveryPanel() {
           </ul>
         </div>
       </div>
+      </HeroMediaLink>
       <figcaption className="mt-2 text-xs text-[#6B7280]">
         Illustrative flow: a canceled slot is matched from the waitlist and refilled. Sample
-        schedule, not live clinic data.
+        schedule, not live clinic data. Click the panel to open the live demo.
       </figcaption>
     </figure>
   );

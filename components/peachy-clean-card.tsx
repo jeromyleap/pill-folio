@@ -6,6 +6,7 @@ import { ArrowUpRight, ChevronDown, X } from "lucide-react";
 
 import type { Project } from "@/data/projects";
 import { peachyBrief as brief } from "@/data/peachy-clean";
+import { HeroMediaLink } from "@/components/hero-media-link";
 import { useCardFocus } from "@/components/use-card-focus";
 import { cn } from "@/lib/utils";
 
@@ -80,15 +81,25 @@ export function PeachyCleanCard({
       </div>
 
       <div className="grid gap-5 px-4 py-5 sm:px-5 lg:grid-cols-[1.05fr_0.95fr] lg:gap-6">
-        <figure className={cn("self-start overflow-hidden rounded-[22px] bg-white shadow-[0_14px_34px_rgba(90,90,64,0.12)]", sageBorder)}>
-          <div className="aspect-video">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={project.screenshot}
-              alt={project.screenshotAlt}
-              className="h-full w-full object-cover"
-            />
-          </div>
+        <figure className="self-start">
+          <HeroMediaLink
+            href={project.liveUrl}
+            label={`Open live site: ${project.title}`}
+            className={cn(
+              "rounded-[22px] hover:shadow-[0_0_0_3px_rgba(255,203,154,0.65),0_16px_36px_rgba(90,90,64,0.18)]",
+            )}
+          >
+            <div className={cn("overflow-hidden rounded-[22px] bg-white shadow-[0_14px_34px_rgba(90,90,64,0.12)]", sageBorder)}>
+              <div className="aspect-video">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={project.screenshot}
+                  alt={project.screenshotAlt}
+                  className="h-full w-full object-cover transition-[transform,filter] duration-300 group-hover/hero:scale-[1.02] motion-reduce:group-hover/hero:scale-100"
+                />
+              </div>
+            </div>
+          </HeroMediaLink>
         </figure>
 
         <div className="flex flex-col gap-4">

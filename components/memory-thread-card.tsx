@@ -8,6 +8,7 @@ import type { Project } from "@/data/projects";
 import { memoryThreadCaseStudy as brief, memoryThreadDesign } from "@/data/memory-thread";
 import { useCardFocus } from "@/components/use-card-focus";
 import { BrandDesign } from "@/components/brand-design";
+import { HeroMediaLink } from "@/components/hero-media-link";
 import { cn } from "@/lib/utils";
 
 const GRAIN =
@@ -92,18 +93,26 @@ export function MemoryThreadCard({
       </div>
 
       <div className="grid gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
-        <figure className="mx-auto w-full max-w-xl rotate-1 self-start lg:self-center rounded-[6px] bg-[#f5f5f4] p-2.5 pb-0 shadow-[0_18px_40px_rgba(0,0,0,0.55)] transition-transform duration-500 hover:rotate-0 motion-reduce:rotate-0 motion-reduce:transition-none sm:p-3 sm:pb-0">
-          <div className="aspect-[1200/630] overflow-hidden rounded-[2px] bg-[#0b0f19]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={project.screenshot}
-              alt={project.screenshotAlt}
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <figcaption className="py-2.5 text-center font-memory-script text-2xl leading-none text-[#3a3226] sm:py-3 sm:text-[1.7rem]">
-            {brief.inscription}
-          </figcaption>
+        <figure className="mx-auto w-full max-w-xl self-start lg:self-center">
+          <HeroMediaLink
+            href={project.liveUrl}
+            label={`Open live site: ${project.title}`}
+            className="block rotate-1 rounded-[6px] transition-transform duration-500 hover:rotate-0 hover:shadow-[0_0_0_2px_rgba(197,173,126,0.55),0_20px_48px_rgba(245,158,11,0.28)] motion-reduce:rotate-0 motion-reduce:transition-none"
+          >
+            <div className="rounded-[6px] bg-[#f5f5f4] p-2.5 pb-0 shadow-[0_18px_40px_rgba(0,0,0,0.55)] sm:p-3 sm:pb-0">
+              <div className="aspect-[1200/630] overflow-hidden rounded-[2px] bg-[#0b0f19]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={project.screenshot}
+                  alt={project.screenshotAlt}
+                  className="h-full w-full object-cover transition-[transform,filter] duration-300 group-hover/hero:scale-[1.02] motion-reduce:group-hover/hero:scale-100"
+                />
+              </div>
+              <figcaption className="py-2.5 text-center font-memory-script text-2xl leading-none text-[#3a3226] sm:py-3 sm:text-[1.7rem]">
+                {brief.inscription}
+              </figcaption>
+            </div>
+          </HeroMediaLink>
         </figure>
 
         <div className="flex flex-col gap-4">

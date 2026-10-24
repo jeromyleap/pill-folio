@@ -8,6 +8,7 @@ import type { Project } from "@/data/projects";
 import { wristedBrand, wristedCaseStudy, wristedLooks } from "@/data/wristed";
 import { useCardFocus } from "@/components/use-card-focus";
 import { BrandDesign } from "@/components/brand-design";
+import { HeroMediaLink } from "@/components/hero-media-link";
 import { cn } from "@/lib/utils";
 
 type Shape = "square" | "round";
@@ -81,14 +82,20 @@ export function WristedCard({
 
       <div className="grid gap-5 px-4 py-5 sm:px-5 lg:grid-cols-[1.05fr_0.95fr] lg:gap-6">
         <figure>
-          <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 shadow-[0_12px_40px_rgba(105,76,250,0.28)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={project.screenshot}
-              alt={project.screenshotAlt}
-              className="h-full w-full object-cover"
-            />
-          </div>
+          <HeroMediaLink
+            href={project.liveUrl}
+            label={`Open live site: ${project.title}`}
+            className="rounded-2xl hover:shadow-[0_0_0_2px_rgba(196,181,253,0.55),0_16px_44px_rgba(123,92,250,0.45)]"
+          >
+            <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 shadow-[0_12px_40px_rgba(105,76,250,0.28)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={project.screenshot}
+                alt={project.screenshotAlt}
+                className="h-full w-full object-cover transition-[transform,filter] duration-300 group-hover/hero:scale-[1.02] motion-reduce:group-hover/hero:scale-100"
+              />
+            </div>
+          </HeroMediaLink>
         </figure>
 
         <div className="flex flex-col gap-4">
