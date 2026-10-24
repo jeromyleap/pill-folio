@@ -175,12 +175,16 @@ export const projects: Project[] = [
     shortLabel: "We",
     lidName: "Scout",
     title: "HealthScout",
-    eyebrow: "Healthcare product",
+    eyebrow: "Travel healthcare intelligence",
     description:
-      "A specialized healthcare application. This compartment holds that product on its own — a focused clinical tool, kept apart from the revenue and waitlist messaging in Fluxo.",
-    value: "A healthcare product with a narrow, specialized job.",
-    tech: ["Healthcare", "Product design"],
-    screenshotAlt: "Illustrated clinic cottage and compass for HealthScout",
+      "Transparent, profession-specific hospital intelligence and assignment ratings for travel healthcare workers — real ratings from real professionals on staffing, culture, and safety.",
+    value: "Know before you go.",
+    tech: ["React 19", "TypeScript", "Firebase", "Gemini API"],
+    liveUrl: "https://ais-pre-lq62uljssqt7a4nbks2uun-391818798699.us-east1.run.app",
+    screenshot: "/screenshots/healthscout.jpg",
+    screenshotAlt:
+      "HealthScout home screen: “Know before you go.” above rated hospital cards for Mayo Clinic, New York-Presbyterian, and Cedars-Sinai",
+    logo: "/brand/healthscout-crest.jpg",
     theme: {
       lid: "#b9d7e8",
       deep: "#5e93ad",
