@@ -200,7 +200,6 @@ export function MemoryThreadCard({
 function Candle({ reduce }: { reduce: boolean }) {
   return (
     <div aria-hidden className="relative mr-1 hidden h-10 w-6 sm:block">
-      <div className="absolute -top-3 left-1/2 size-12 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(251,191,36,0.35),transparent_65%)]" />
       <motion.div
         className="absolute top-0.5 left-1/2 h-4 w-2.5 -ml-[5px] origin-bottom rounded-[50%_50%_45%_45%/65%_65%_35%_35%] bg-[radial-gradient(circle_at_50%_70%,#fff7d6_0%,#fbbf24_45%,#f59e0b_80%)]"
         animate={
