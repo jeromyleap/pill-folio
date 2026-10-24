@@ -66,9 +66,9 @@ export function Portfolio({ projects }: { projects: Project[] }) {
       <main className="flex min-h-0 flex-1 flex-col">
         <section
           id="planner"
-          className="mx-auto flex w-full max-w-[1040px] min-h-0 flex-1 flex-col justify-center px-3 py-3 sm:px-6 sm:py-4 lg:py-3"
+          className="mx-auto flex w-full max-w-[1040px] min-h-0 flex-1 flex-col justify-center px-3 py-3 sm:px-6 sm:py-4 lg:py-4"
         >
-          <div className="stage-circle relative flex min-h-0 flex-1 flex-col overflow-hidden rounded-[32px] border-[3px] border-ink px-3 pt-5 pb-4 sm:rounded-[48px] sm:px-7 sm:pt-6 sm:pb-5 lg:max-h-[calc(100dvh-7.5rem)] lg:flex-none lg:pt-5 lg:pb-4">
+          <div className="stage-circle relative flex min-h-0 flex-1 flex-col overflow-hidden rounded-[32px] border-[3px] border-ink px-3 pt-6 pb-5 sm:rounded-[48px] sm:px-8 sm:pt-7 sm:pb-6 lg:max-h-[calc(100dvh-7rem)] lg:flex-none lg:px-9 lg:pt-7 lg:pb-6">
             <div
               aria-hidden
               className="stage-disc pointer-events-none absolute top-[46%] left-1/2 aspect-square w-[min(118%,720px)] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-ink/20"
@@ -91,7 +91,7 @@ export function Portfolio({ projects }: { projects: Project[] }) {
               </p>
             ) : (
               <>
-                <div className="relative -mx-3 mt-1 min-h-[220px] flex-1 sm:-mx-7 sm:min-h-[260px] lg:mt-0 lg:h-[min(38dvh,360px)] lg:flex-none">
+                <div className="relative -mx-3 mt-2 min-h-[240px] flex-1 sm:-mx-8 sm:min-h-[280px] lg:-mx-9 lg:mt-3 lg:h-[min(42dvh,400px)] lg:flex-none">
                   <PillBox3D
                     projects={projects}
                     activeId={activeId}
@@ -99,7 +99,7 @@ export function Portfolio({ projects }: { projects: Project[] }) {
                     onSelect={select}
                     onClear={() => setActiveId(null)}
                     fallback={
-                      <div className="flex h-full items-center px-3 sm:px-7">
+                      <div className="flex h-full items-center px-3 sm:px-8 lg:px-9">
                         <div className="w-full">
                           <PillPlanner
                             projects={projects}
@@ -112,13 +112,10 @@ export function Portfolio({ projects }: { projects: Project[] }) {
                     }
                   />
                 </div>
-                <p className="relative shrink-0 text-center text-[11px] font-semibold text-ink-soft sm:text-xs">
-                  Drag to spin · scroll or pinch to zoom · click a lid
-                </p>
-                <div className="relative mx-auto mt-2.5 w-full max-w-2xl shrink-0 sm:mt-3">
+                <div className="relative mx-auto mt-3 w-full max-w-2xl shrink-0 sm:mt-4">
                   <DayChips projects={projects} activeId={activeId} onSelect={select} />
                 </div>
-                <p className="relative mt-3 flex shrink-0 items-center justify-center gap-2 text-center text-xs text-ink-soft sm:mt-3.5 sm:text-sm">
+                <p className="relative mt-3.5 flex shrink-0 items-center justify-center gap-2 text-center text-xs text-ink-soft sm:mt-4 sm:text-sm">
                   <span aria-hidden className="inline-flex items-center">
                     <Capsule a="#c5dbb8" b="#fffaf3" className="-rotate-12" />
                     <Capsule a="#d9c8f0" b="#f8c8a8" className="-ml-1 rotate-12" />
