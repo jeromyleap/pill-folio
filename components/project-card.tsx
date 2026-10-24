@@ -8,6 +8,7 @@ import { GalleryArt } from "@/components/illustrations";
 import { LiveMetadata } from "@/components/live-metadata";
 import { ScreenshotFrame } from "@/components/screenshot-frame";
 import { useCardFocus } from "@/components/use-card-focus";
+import { FluxoCard } from "@/components/fluxo-card";
 import { HealthScoutCard } from "@/components/healthscout-card";
 import { MemoryThreadCard } from "@/components/memory-thread-card";
 import { WristedCard } from "@/components/wristed-card";
@@ -24,6 +25,9 @@ export function ProjectCard({
 }) {
   if (project.id === "memory-thread") {
     return <MemoryThreadCard project={project} onClose={onClose} />;
+  }
+  if (project.id === "fluxo") {
+    return <FluxoCard project={project} onClose={onClose} />;
   }
   if (project.id === "healthscout") {
     return <HealthScoutCard project={project} onClose={onClose} />;

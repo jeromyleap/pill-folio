@@ -202,11 +202,12 @@ export const projects: Project[] = [
     shortLabel: "Th",
     lidName: "Fluxo",
     title: "Fluxo",
-    eyebrow: "Healthcare operations",
+    eyebrow: "Clinic revenue engine",
     description:
-      "Automated healthcare revenue recovery and waitlist messaging. Fluxo sends the notes that bring a balance current and the notes that fill an open appointment slot.",
-    value: "Balances and open slots, followed up without the scramble.",
-    tech: ["Revenue recovery", "Waitlist messaging", "Healthcare"],
+      "Fluxo recovers lost revenue by auto-filling canceled medical and dental appointments — with zero staff intervention.",
+    value: "Canceled slots, refilled on their own.",
+    tech: ["Revenue recovery", "Waitlist automation", "Medical & dental"],
+    liveUrl: "https://ais-pre-bgrxyrol57h3b4upmi7gd5-391818798699.us-east1.run.app",
     screenshotAlt: "Illustrated envelopes, calendar slot, and coins for Fluxo",
     theme: {
       lid: "#f3c3cf",
