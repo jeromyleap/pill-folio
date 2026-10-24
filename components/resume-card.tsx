@@ -16,6 +16,7 @@ import {
 } from "@/data/resume";
 import { BrandDesign } from "@/components/brand-design";
 import { Capsule } from "@/components/capsule";
+import { HeroMediaLink } from "@/components/hero-media-link";
 import { useCardFocus } from "@/components/use-card-focus";
 import { cn } from "@/lib/utils";
 
@@ -84,24 +85,85 @@ export function ResumeCard({
 
       <div className="grid gap-5 px-4 py-5 sm:px-5 lg:grid-cols-[1.05fr_0.95fr] lg:gap-6">
         <figure className="self-start">
-          <div className="overflow-hidden rounded-[22px] border-[3px] border-ink bg-paper shadow-[4px_6px_0_rgba(60,51,43,0.12)]">
-            <div className="flex items-center gap-1.5 border-b-2 border-ink/15 bg-[#fffaf3] px-3 py-2">
-              <span className="size-2.5 rounded-full border-2 border-ink bg-[#f3c3cf]" />
-              <span className="size-2.5 rounded-full border-2 border-ink bg-[#f6dc8e]" />
-              <span className="size-2.5 rounded-full border-2 border-ink bg-[#c5dbb8]" />
-              <span className="ml-2 truncate text-[11px] font-semibold text-ink-soft">
-                Resume hero
-              </span>
+          <HeroMediaLink
+            href={resumeBrief.site}
+            label={`Open nicheleap.com: ${project.screenshotAlt}`}
+            className="rounded-[22px]"
+          >
+            <div className="overflow-hidden rounded-[22px] border-[3px] border-ink shadow-[4px_6px_0_rgba(60,51,43,0.12)] transition-[box-shadow] duration-300 group-hover/hero:shadow-[4px_10px_0_rgba(60,51,43,0.16),0_0_28px_rgba(197,173,126,0.45)]">
+              {/* Desktop scene — tall frame around the wide banner, image stays undistorted */}
+              <div
+                className="relative flex flex-col"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at 28% 18%, #fffaf3 0%, #e8f2e2 45%, #cfe3c6 100%)",
+                }}
+              >
+                <div className="flex items-center justify-between border-b-2 border-ink/15 bg-[#fffaf3]/92 px-3 py-1.5">
+                  <div className="flex items-center gap-1.5">
+                    <Capsule a="#c5dbb8" b="#f6dc8e" className="h-2.5 w-5 border-ink" />
+                    <span className="text-[11px] font-extrabold tracking-wide text-ink">
+                      nicheleap
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-semibold text-ink-soft">Sunday · Desktop</span>
+                </div>
+
+                <div className="relative px-2.5 pt-4 pb-3 sm:px-3.5 sm:pt-5 sm:pb-3.5">
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 opacity-[0.28]"
+                    style={{
+                      backgroundImage:
+                        "radial-gradient(circle at 1px 1px, rgba(60,51,43,0.16) 1px, transparent 0)",
+                      backgroundSize: "16px 16px",
+                    }}
+                  />
+
+                  {/* Peeking back window for depth / extra vertical mass */}
+                  <div
+                    aria-hidden
+                    className="absolute top-2 right-4 left-8 h-10 rounded-[12px] border-2 border-ink/25 bg-[#fffaf3]/70 sm:left-10"
+                  />
+
+                  <div className="relative overflow-hidden rounded-[14px] border-[2.5px] border-ink bg-paper shadow-[5px_8px_0_rgba(60,51,43,0.18)] sm:rounded-[16px]">
+                    <div className="flex items-center gap-1.5 border-b-2 border-ink/15 bg-[#fffaf3] px-2.5 py-1.5">
+                      <span className="size-2 rounded-full border-2 border-ink bg-[#f3c3cf]" />
+                      <span className="size-2 rounded-full border-2 border-ink bg-[#f6dc8e]" />
+                      <span className="size-2 rounded-full border-2 border-ink bg-[#c5dbb8]" />
+                      <span className="ml-1.5 truncate text-[10px] font-semibold text-ink-soft sm:text-[11px]">
+                        nicheleap.com/resume
+                      </span>
+                    </div>
+                    <div className="bg-[#f4faef]">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={project.screenshot}
+                        alt={project.screenshotAlt}
+                        className="h-auto w-full object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center gap-2 border-t-2 border-ink/10 bg-[#fffaf3]/80 px-3 py-2">
+                  {[
+                    ["#c5dbb8", "#f6dc8e"],
+                    ["#f3c3cf", "#d9c8f0"],
+                    ["#b9d7e8", "#f8c8a8"],
+                    ["#f7e2a0", "#aedfd0"],
+                  ].map(([a, b]) => (
+                    <span
+                      key={a}
+                      className="grid size-7 place-items-center rounded-xl border-2 border-ink bg-paper shadow-[1px_2px_0_rgba(60,51,43,0.12)] sm:size-8"
+                    >
+                      <Capsule a={a} b={b} className="h-2.5 w-5 border-ink" />
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
-            <div className="bg-[#f4faef]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={project.screenshot}
-                alt={project.screenshotAlt}
-                className="h-auto w-full object-contain"
-              />
-            </div>
-          </div>
+          </HeroMediaLink>
         </figure>
 
         <div className="flex flex-col gap-4">
