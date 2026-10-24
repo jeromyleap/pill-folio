@@ -138,8 +138,8 @@ export function Portfolio({ projects }: { projects: Project[] }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{
-              duration: reduce ? 0.12 : 0.28,
-              delay: reduce ? 0.35 : 0.55,
+              duration: reduce ? 0.12 : 0.4,
+              delay: reduce ? 0.45 : 1.05,
             }}
           >
             <button
@@ -160,7 +160,7 @@ export function Portfolio({ projects }: { projects: Project[] }) {
                   initial={
                     reduce
                       ? { opacity: 0 }
-                      : { opacity: 0, scale: 0.28, y: 36, filter: "blur(6px)" }
+                      : { opacity: 0, scale: 0.12, y: 72, filter: "blur(10px)" }
                   }
                   animate={
                     reduce
@@ -170,20 +170,20 @@ export function Portfolio({ projects }: { projects: Project[] }) {
                   exit={
                     reduce
                       ? { opacity: 0 }
-                      : { opacity: 0, scale: 0.72, y: 18, filter: "blur(4px)" }
+                      : { opacity: 0, scale: 0.7, y: 28, filter: "blur(5px)" }
                   }
                   transition={
                     reduce
-                      ? { duration: 0.15, delay: 0.35 }
+                      ? { duration: 0.18, delay: 0.45 }
                       : {
                           type: "spring",
-                          stiffness: 160,
-                          damping: 24,
-                          mass: 1.05,
-                          delay: 0.62,
+                          stiffness: 88,
+                          damping: 22,
+                          mass: 1.35,
+                          delay: 1.2,
                         }
                   }
-                  style={{ transformOrigin: "50% 35%" }}
+                  style={{ transformOrigin: "50% 58%" }}
                 >
                   <ScatteredCardPills theme={active.theme} />
                   <ProjectCard project={active} onClose={close} />
