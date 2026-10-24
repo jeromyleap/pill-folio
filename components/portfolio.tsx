@@ -61,25 +61,28 @@ export function Portfolio({ projects }: { projects: Project[] }) {
   }
 
   return (
-    <div className="flex min-h-full flex-col">
+    <div className="flex min-h-dvh flex-col">
       <SiteHeader />
-      <main className="flex-1">
-        <section id="planner" className="mx-auto mt-6 w-full max-w-[1040px] px-3 sm:mt-10 sm:px-6">
-          <div className="stage-circle relative overflow-hidden rounded-[40px] border-[3px] border-ink px-3 pt-8 pb-5 sm:rounded-[56px] sm:px-8 sm:pt-10 sm:pb-7">
+      <main className="flex min-h-0 flex-1 flex-col">
+        <section
+          id="planner"
+          className="mx-auto flex w-full max-w-[1040px] min-h-0 flex-1 flex-col justify-center px-3 py-3 sm:px-6 sm:py-4 lg:py-3"
+        >
+          <div className="stage-circle relative flex min-h-0 flex-1 flex-col overflow-hidden rounded-[32px] border-[3px] border-ink px-3 pt-5 pb-4 sm:rounded-[48px] sm:px-7 sm:pt-6 sm:pb-5 lg:max-h-[calc(100dvh-7.5rem)] lg:flex-none lg:pt-5 lg:pb-4">
             <div
               aria-hidden
-              className="stage-disc pointer-events-none absolute top-[46%] left-1/2 aspect-square w-[min(118%,760px)] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-ink/20"
+              className="stage-disc pointer-events-none absolute top-[46%] left-1/2 aspect-square w-[min(118%,720px)] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-ink/20"
             />
-            <div className="relative mx-auto max-w-xl text-center">
-              <p className="text-xs font-extrabold tracking-[0.22em] text-ink-soft uppercase">
+            <div className="relative mx-auto max-w-xl shrink-0 text-center">
+              <p className="text-[10px] font-extrabold tracking-[0.22em] text-ink-soft uppercase sm:text-xs">
                 nicheleap.com
               </p>
-              <h1 className="mt-2 font-display text-4xl leading-[0.95] text-ink sm:text-6xl">
+              <h1 className="mt-1.5 font-display text-[2.35rem] leading-[0.95] text-ink sm:text-5xl lg:text-[3.25rem]">
                 Open a day.
               </h1>
-              <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-ink-soft sm:text-base">
-                A weekly pill box for the work I keep close — school, family archives,
-                watch faces, clinic tools, and a cleaning crew&apos;s schedule.
+              <p className="mx-auto mt-2 max-w-lg text-sm leading-snug text-ink-soft sm:mt-2.5 sm:text-[0.95rem] sm:leading-relaxed">
+                A weekly pill box for the work I keep close — open a lid and that day&apos;s
+                project spills into view.
               </p>
             </div>
 
@@ -89,7 +92,7 @@ export function Portfolio({ projects }: { projects: Project[] }) {
               </p>
             ) : (
               <>
-                <div className="relative -mx-3 mt-2 h-[300px] sm:-mx-8 sm:h-[400px] lg:h-[460px]">
+                <div className="relative -mx-3 mt-1 min-h-[220px] flex-1 sm:-mx-7 sm:min-h-[260px] lg:mt-0 lg:h-[min(38dvh,360px)] lg:flex-none">
                   <PillBox3D
                     projects={projects}
                     activeId={activeId}
@@ -97,7 +100,7 @@ export function Portfolio({ projects }: { projects: Project[] }) {
                     onSelect={select}
                     onClear={() => setActiveId(null)}
                     fallback={
-                      <div className="flex h-full items-center px-3 sm:px-8">
+                      <div className="flex h-full items-center px-3 sm:px-7">
                         <div className="w-full">
                           <PillPlanner
                             projects={projects}
@@ -110,13 +113,13 @@ export function Portfolio({ projects }: { projects: Project[] }) {
                     }
                   />
                 </div>
-                <p className="relative text-center text-xs font-semibold text-ink-soft sm:text-sm">
+                <p className="relative shrink-0 text-center text-[11px] font-semibold text-ink-soft sm:text-xs">
                   Drag to spin · scroll or pinch to zoom · click a lid
                 </p>
-                <div className="relative mx-auto mt-4 max-w-2xl">
+                <div className="relative mx-auto mt-2.5 w-full max-w-2xl shrink-0 sm:mt-3">
                   <DayChips projects={projects} activeId={activeId} onSelect={select} />
                 </div>
-                <p className="relative mt-5 flex items-center justify-center gap-2 text-center text-sm text-ink-soft">
+                <p className="relative mt-3 flex shrink-0 items-center justify-center gap-2 text-center text-xs text-ink-soft sm:mt-3.5 sm:text-sm">
                   <span aria-hidden className="inline-flex items-center">
                     <Capsule a="#c5dbb8" b="#fffaf3" className="-rotate-12" />
                     <Capsule a="#d9c8f0" b="#f8c8a8" className="-ml-1 rotate-12" />
@@ -177,7 +180,6 @@ export function Portfolio({ projects }: { projects: Project[] }) {
                     reduce
                       ? { duration: 0.15, delay: 0.35 }
                       : {
-                          // Wait for the 3D spill (pills release ~0.12–0.35s) before the card pops.
                           type: "spring",
                           stiffness: 160,
                           damping: 24,
