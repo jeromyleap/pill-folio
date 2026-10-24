@@ -31,10 +31,15 @@ function useFitDistance(): number {
     const aspect = size.width / Math.max(size.height, 1);
     const vfov = (camera.fov * Math.PI) / 180;
     const hfov = 2 * Math.atan(Math.tan(vfov / 2) * aspect);
-    // Extra margin so orbit + float bobbing never clip the tray against the canvas.
-    const fitWidth = (TRAY_W * 0.78) / Math.tan(hfov / 2);
-    const fitHeight = (SCENE_H * 0.72) / Math.tan(vfov / 2);
-    return Math.max(fitWidth, fitHeight) * 1.12;
+    // Portrait canvases are tall and narrow — keep the tray large.
+    // Landscape / desktop keep extra margin so orbit never clips.
+    const portrait = aspect < 0.95;
+    const widthHalf = TRAY_W * (portrait ? 0.56 : 0.78);
+    const heightHalf = SCENE_H * (portrait ? 0.48 : 0.72);
+    const margin = portrait ? 1.02 : 1.12;
+    const fitWidth = widthHalf / Math.tan(hfov / 2);
+    const fitHeight = heightHalf / Math.tan(vfov / 2);
+    return Math.max(fitWidth, fitHeight) * margin;
   }, [size.width, size.height, camera.fov]);
 }
 
@@ -175,7 +180,7 @@ export function PillBoxScene({
         dampingFactor={0.08}
         rotateSpeed={0.55}
         zoomSpeed={0.45}
-        minDistance={distance * 0.94}
+        minDistance={distance * 0.9}
         maxDistance={distance * 1.28}
         minPolarAngle={0.62}
         maxPolarAngle={1.32}
