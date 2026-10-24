@@ -23,8 +23,25 @@ const PillBox3D = dynamic(() => import("@/components/pill-box-3d"), {
   ),
 });
 
+type SpillOrigin = { x: number; y: number };
+
+/** Offset from the card's settled center back to the 3D tray, so the pop starts in the box. */
+function readSpillOrigin(): SpillOrigin {
+  const stage =
+    document.getElementById("pill-box-stage") ??
+    document.querySelector<HTMLElement>("#planner canvas");
+  if (!stage) return { x: 0, y: 96 };
+  const rect = stage.getBoundingClientRect();
+  const originX = rect.left + rect.width / 2;
+  const originY = rect.top + rect.height * 0.46;
+  const targetX = window.innerWidth / 2;
+  const targetY = window.innerHeight * (window.innerWidth < 640 ? 0.36 : 0.5);
+  return { x: originX - targetX, y: originY - targetY };
+}
+
 export function Portfolio({ projects }: { projects: Project[] }) {
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [spillOrigin, setSpillOrigin] = useState<SpillOrigin>({ x: 0, y: 96 });
   const reduce = useReducedMotion() ?? false;
   const active = projects.find((project) => project.id === activeId) ?? null;
 
@@ -50,7 +67,12 @@ export function Portfolio({ projects }: { projects: Project[] }) {
   }, [activeId]);
 
   function select(id: string) {
-    setActiveId((current) => (current === id ? null : id));
+    if (activeId === id) {
+      setActiveId(null);
+      return;
+    }
+    setSpillOrigin(readSpillOrigin());
+    setActiveId(id);
   }
 
   function close() {
@@ -90,7 +112,10 @@ export function Portfolio({ projects }: { projects: Project[] }) {
               </p>
             ) : (
               <>
-                <div className="relative -mx-3 mt-1 min-h-[300px] flex-1 sm:-mx-8 sm:min-h-[360px] lg:-mx-9 lg:mt-1 lg:h-[min(58dvh,540px)] lg:flex-none">
+                <div
+                  id="pill-box-stage"
+                  className="relative -mx-3 mt-1 min-h-[300px] flex-1 sm:-mx-8 sm:min-h-[360px] lg:-mx-9 lg:mt-1 lg:h-[min(58dvh,540px)] lg:flex-none"
+                >
                   {/* Taller paint area than the layout slot so orbit/zoom have vertical headroom. */}
                   <div className="absolute inset-x-0 -top-8 -bottom-6 z-[1] sm:-top-10 sm:-bottom-8 lg:-top-12 lg:-bottom-10">
                     <PillBox3D
@@ -144,7 +169,10 @@ export function Portfolio({ projects }: { projects: Project[] }) {
               className="absolute inset-0 bg-[#3c332b]/45 backdrop-blur-[2px]"
               onClick={close}
             />
-            <div className="relative z-10 h-full overflow-y-auto overscroll-contain px-3 py-6 sm:px-6 sm:py-10">
+            <div
+              className="relative z-10 h-full overflow-y-auto overscroll-contain px-3 py-6 sm:px-6 sm:py-10"
+              style={{ perspective: reduce ? undefined : 1400 }}
+            >
               <div className="mx-auto flex min-h-full w-full max-w-[960px] items-start justify-center sm:items-center">
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.div
@@ -157,30 +185,93 @@ export function Portfolio({ projects }: { projects: Project[] }) {
                     initial={
                       reduce
                         ? { opacity: 0 }
-                        : { opacity: 0, scale: 0.12, y: 72, filter: "blur(10px)" }
+                        : {
+                            opacity: 0,
+                            scale: 0.045,
+                            x: spillOrigin.x,
+                            y: spillOrigin.y,
+                            rotateX: 58,
+                            rotateZ: -3,
+                            filter: "blur(14px)",
+                          }
                     }
                     animate={
                       reduce
                         ? { opacity: 1 }
-                        : { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }
+                        : {
+                            opacity: 1,
+                            scale: 1,
+                            x: 0,
+                            y: 0,
+                            rotateX: 0,
+                            rotateZ: 0,
+                            filter: "blur(0px)",
+                          }
                     }
                     exit={
                       reduce
                         ? { opacity: 0 }
-                        : { opacity: 0, scale: 0.7, y: 28, filter: "blur(5px)" }
+                        : {
+                            opacity: 0,
+                            scale: 0.18,
+                            x: spillOrigin.x * 0.45,
+                            y: spillOrigin.y * 0.45 + 24,
+                            rotateX: 28,
+                            filter: "blur(8px)",
+                          }
                     }
                     transition={
                       reduce
                         ? { duration: 0.18, delay: 0.45 }
                         : {
-                            type: "spring",
-                            stiffness: 88,
-                            damping: 22,
-                            mass: 1.35,
-                            delay: 1.2,
+                            // Springs start after the spill; opacity lags so a speck
+                            // is already rising out of the tray before the card reads.
+                            scale: {
+                              type: "spring",
+                              stiffness: 64,
+                              damping: 16,
+                              mass: 1.45,
+                              delay: 1.2,
+                            },
+                            x: {
+                              type: "spring",
+                              stiffness: 70,
+                              damping: 18,
+                              mass: 1.3,
+                              delay: 1.2,
+                            },
+                            y: {
+                              type: "spring",
+                              stiffness: 70,
+                              damping: 18,
+                              mass: 1.3,
+                              delay: 1.2,
+                            },
+                            rotateX: {
+                              type: "spring",
+                              stiffness: 78,
+                              damping: 18,
+                              mass: 1.2,
+                              delay: 1.2,
+                            },
+                            rotateZ: {
+                              type: "spring",
+                              stiffness: 90,
+                              damping: 20,
+                              delay: 1.2,
+                            },
+                            opacity: {
+                              duration: 0.55,
+                              delay: 1.4,
+                              ease: [0.22, 1, 0.36, 1],
+                            },
+                            filter: { duration: 0.65, delay: 1.32, ease: "easeOut" },
                           }
                     }
-                    style={{ transformOrigin: "50% 58%" }}
+                    style={{
+                      transformOrigin: "50% 50%",
+                      transformStyle: "preserve-3d",
+                    }}
                   >
                     <ScatteredCardPills theme={active.theme} />
                     <ProjectCard project={active} onClose={close} />
