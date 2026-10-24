@@ -128,7 +128,7 @@ export function Portfolio({ projects }: { projects: Project[] }) {
         {active ? (
           <motion.div
             key="spill-overlay"
-            className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto overscroll-contain px-3 py-6 sm:items-center sm:px-6 sm:py-10"
+            className="fixed inset-0 z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -137,53 +137,56 @@ export function Portfolio({ projects }: { projects: Project[] }) {
               delay: reduce ? 0.45 : 1.05,
             }}
           >
+            {/* Viewport-locked dim/blur — stays put while the card scrollport moves */}
             <button
               type="button"
               aria-label="Close project card"
               className="absolute inset-0 bg-[#3c332b]/45 backdrop-blur-[2px]"
               onClick={close}
             />
-            <div className="relative z-10 my-auto w-full max-w-[960px]">
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.div
-                  key={active.id}
-                  id="project-panel"
-                  role="dialog"
-                  aria-modal="true"
-                  aria-label={active.title}
-                  className="relative"
-                  initial={
-                    reduce
-                      ? { opacity: 0 }
-                      : { opacity: 0, scale: 0.12, y: 72, filter: "blur(10px)" }
-                  }
-                  animate={
-                    reduce
-                      ? { opacity: 1 }
-                      : { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }
-                  }
-                  exit={
-                    reduce
-                      ? { opacity: 0 }
-                      : { opacity: 0, scale: 0.7, y: 28, filter: "blur(5px)" }
-                  }
-                  transition={
-                    reduce
-                      ? { duration: 0.18, delay: 0.45 }
-                      : {
-                          type: "spring",
-                          stiffness: 88,
-                          damping: 22,
-                          mass: 1.35,
-                          delay: 1.2,
-                        }
-                  }
-                  style={{ transformOrigin: "50% 58%" }}
-                >
-                  <ScatteredCardPills theme={active.theme} />
-                  <ProjectCard project={active} onClose={close} />
-                </motion.div>
-              </AnimatePresence>
+            <div className="relative z-10 h-full overflow-y-auto overscroll-contain px-3 py-6 sm:px-6 sm:py-10">
+              <div className="mx-auto flex min-h-full w-full max-w-[960px] items-start justify-center sm:items-center">
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={active.id}
+                    id="project-panel"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label={active.title}
+                    className="relative w-full"
+                    initial={
+                      reduce
+                        ? { opacity: 0 }
+                        : { opacity: 0, scale: 0.12, y: 72, filter: "blur(10px)" }
+                    }
+                    animate={
+                      reduce
+                        ? { opacity: 1 }
+                        : { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }
+                    }
+                    exit={
+                      reduce
+                        ? { opacity: 0 }
+                        : { opacity: 0, scale: 0.7, y: 28, filter: "blur(5px)" }
+                    }
+                    transition={
+                      reduce
+                        ? { duration: 0.18, delay: 0.45 }
+                        : {
+                            type: "spring",
+                            stiffness: 88,
+                            damping: 22,
+                            mass: 1.35,
+                            delay: 1.2,
+                          }
+                    }
+                    style={{ transformOrigin: "50% 58%" }}
+                  >
+                    <ScatteredCardPills theme={active.theme} />
+                    <ProjectCard project={active} onClose={close} />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
             </div>
           </motion.div>
         ) : null}
