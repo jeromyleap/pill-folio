@@ -39,34 +39,6 @@ export const memoryThreadCaseStudy = {
         "Curators can export the whole thread as an offline .zip capsule with original audio, photos and video, and a self-contained HTML viewer.",
     },
   ],
-  challenges: [
-    {
-      title: "iOS black video frames",
-      problem: "Mobile Safari won't paint frame 0 of inline video to save power.",
-      solution:
-        "Seek to the #t=0.001 media fragment on metadata load and extract a poster frame client-side with Canvas.",
-    },
-    {
-      title: "PWA audio range stalls",
-      problem: "Safari scrubs media with HTTP 206 range requests, which naive service-worker caches break.",
-      solution: "sw.js passes every media streaming request straight through, so voice memos and video never stall.",
-    },
-    {
-      title: "Floating header on WebKit",
-      problem: "A transformed, animated header detaches position: fixed during momentum scroll.",
-      solution: "Swapped Framer Motion translates for CSS top transitions and forced transform: none.",
-    },
-    {
-      title: "Elder-friendly onboarding",
-      problem: "SMS codes, passwords, and accounts stop relatives at the table.",
-      solution: "A dual-token URL and passphrase scheme grants instant submission rights on QR scan.",
-    },
-    {
-      title: "Permanence and ownership",
-      problem: "An archive shouldn't depend on one service staying online.",
-      solution: "A client-side archiver bundles audio, full-resolution photos, and metadata into an offline-viewable .zip.",
-    },
-  ],
   stack: [
     {
       group: "Frontend",

@@ -273,26 +273,6 @@ function ArchiveNotes() {
       </section>
 
       <section>
-        <h3 className="font-memory-serif text-2xl font-semibold">Hard problems, quietly solved</h3>
-        <ol className="mt-4 space-y-3">
-          {brief.challenges.map((item, index) => (
-            <li
-              key={item.title}
-              className="grid gap-2 rounded-2xl border border-white/[0.06] bg-[#0f172a] px-4 py-4 sm:grid-cols-[200px_1fr] sm:gap-5"
-            >
-              <p className={kicker}>
-                {String(index + 1).padStart(2, "0")} · {item.title}
-              </p>
-              <div className="space-y-1.5 text-sm leading-relaxed">
-                <p className="text-[#94a3b8]">{item.problem}</p>
-                <p className="text-[#f5f5f4]">{item.solution}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section>
         <h3 className="font-memory-serif text-2xl font-semibold">The stack</h3>
         <dl className="mt-4 grid gap-5 sm:grid-cols-3">
           {brief.stack.map((group) => (
