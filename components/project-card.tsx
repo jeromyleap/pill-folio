@@ -12,6 +12,7 @@ import { FluxoCard } from "@/components/fluxo-card";
 import { HealthScoutCard } from "@/components/healthscout-card";
 import { MemoryThreadCard } from "@/components/memory-thread-card";
 import { PeachyCleanCard } from "@/components/peachy-clean-card";
+import { ResumeCard } from "@/components/resume-card";
 import { WristedCard } from "@/components/wristed-card";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -24,6 +25,9 @@ export function ProjectCard({
   project: Project;
   onClose: () => void;
 }) {
+  if (project.id === "education") {
+    return <ResumeCard project={project} onClose={onClose} />;
+  }
   if (project.id === "memory-thread") {
     return <MemoryThreadCard project={project} onClose={onClose} />;
   }

@@ -83,12 +83,12 @@ export const projects: Project[] = [
     shortLabel: "Su",
     lidName: "Resume",
     title: "Education & Resume",
-    eyebrow: "Colorado Technical University",
+    eyebrow: "Jeromy Allen Leap · Saint Petersburg, FL",
     description:
-      "BS in Computer Science & Software Engineering at Colorado Technical University. Pharmacy leadership sits beside the degree: patient-facing work, where the line is long, the handoff has to be clear, and the day still has to stay orderly.",
-    value: "School, and the pharmacy floor that taught me to keep a crowded day calm.",
-    tech: ["Computer Science", "Software Engineering", "Pharmacy leadership"],
-    screenshotAlt: "Illustrated diploma, mortarboard, and pharmacy bottle",
+      "Software Engineering student at Colorado Technical University and a longtime pharmacy operations leader — bridging clinical workflows with modern full-stack web work.",
+    value: "Software engineering student. Pharmacy ops leader.",
+    tech: ["Python", "React", "TypeScript", "Node.js"],
+    screenshotAlt: "Placeholder for a resume hero portrait or studio photo",
     theme: {
       lid: "#c5dbb8",
       deep: "#6f9468",
@@ -98,21 +98,6 @@ export const projects: Project[] = [
     },
     kind: "education",
     illustration: "education",
-    highlights: [
-      {
-        label: "Degree",
-        detail: "BS, Computer Science & Software Engineering",
-      },
-      {
-        label: "School",
-        detail: "Colorado Technical University",
-      },
-      {
-        label: "Background",
-        detail:
-          "Pharmacy leadership — patient-facing operations and careful handoffs",
-      },
-    ],
   },
   {
     id: "memory-thread",
