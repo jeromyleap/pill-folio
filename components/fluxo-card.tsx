@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useState, type ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, X } from "lucide-react";
 
 import type { Project } from "@/data/projects";
-import { fluxoBrief, fluxoLog, fluxoSchedule } from "@/data/fluxo";
+import { fluxoBrief, fluxoCaseStudy, fluxoLog, fluxoSchedule } from "@/data/fluxo";
 import { useCardFocus } from "@/components/use-card-focus";
 import { cn } from "@/lib/utils";
 
@@ -27,7 +27,10 @@ export function FluxoCard({
   onClose: () => void;
 }) {
   const titleId = useId();
+  const studyId = useId();
+  const reduce = useReducedMotion() ?? false;
   const { cardRef, closeRef } = useCardFocus<HTMLDivElement>(project.id);
+  const [studyOpen, setStudyOpen] = useState(false);
 
   return (
     <div
@@ -82,20 +85,17 @@ export function FluxoCard({
           </p>
           <p className="text-[15px] leading-relaxed text-[#9CA3AF]">{project.description}</p>
 
-          <dl className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-            {fluxoBrief.facts.map((fact) => (
-              <div
-                key={fact.label}
-                className={cn(glass, "px-3 py-2.5", fact.label === "Role" && "col-span-2 sm:col-span-1")}
-              >
-                <dt className={monoLabel}>{fact.label}</dt>
-                <dd className="mt-1 text-[13px] leading-snug font-semibold text-[#F9FAFB]">{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
+          <div className={cn(glass, "px-3 py-2.5 text-[13px] leading-snug")}>
+            <p>
+              <span className="font-semibold text-[#70F0E0]">Role:</span> {fluxoBrief.role}
+            </p>
+            <p className="mt-1 font-mono text-[11px] tracking-[0.08em] text-[#9CA3AF] uppercase">
+              {fluxoBrief.status}
+            </p>
+          </div>
 
           <div>
-            <p className={monoLabel}>Focus</p>
+            <p className={monoLabel}>Built with</p>
             <ul className="mt-2 flex flex-wrap gap-2">
               {project.tech.map((tag) => (
                 <li
@@ -108,8 +108,8 @@ export function FluxoCard({
             </ul>
           </div>
 
-          {project.liveUrl ? (
-            <div className="mt-auto pt-1">
+          <div className="mt-auto flex flex-wrap gap-2 pt-1">
+            {project.liveUrl ? (
               <a
                 href={project.liveUrl}
                 target="_blank"
@@ -122,20 +122,168 @@ export function FluxoCard({
                 {fluxoBrief.cta}
                 <ArrowUpRight className="size-4" />
               </a>
-            </div>
-          ) : null}
+            ) : null}
+            <button
+              type="button"
+              aria-expanded={studyOpen}
+              aria-controls={studyId}
+              onClick={() => setStudyOpen((open) => !open)}
+              className={cn(
+                "inline-flex h-11 items-center gap-1.5 rounded-full border border-[#374151] bg-[#1F2937]/60 px-5 text-sm font-semibold text-[#F9FAFB] transition-colors hover:border-[#40E0D0]/50",
+                focusRing,
+              )}
+            >
+              {studyOpen ? "Hide case study" : "Read the case study"}
+              <ChevronDown className={cn("size-4 transition-transform", studyOpen && "rotate-180")} />
+            </button>
+          </div>
         </div>
       </div>
 
-      <ol className="grid gap-3 border-t border-[#374151]/60 bg-[#0B0F19]/60 px-4 py-5 sm:grid-cols-3 sm:px-5">
-        {fluxoBrief.flow.map((item, index) => (
-          <li key={item.step} className={cn(glass, "px-4 py-3")}>
-            <p className="font-mono text-xs text-[#40E0D0]">{String(index + 1).padStart(2, "0")}</p>
-            <p className="mt-1 font-bold tracking-tight">{item.step}</p>
-            <p className="mt-1 text-sm leading-relaxed text-[#9CA3AF]">{item.detail}</p>
-          </li>
-        ))}
-      </ol>
+      <AnimatePresence initial={false}>
+        {studyOpen ? (
+          <motion.div
+            id={studyId}
+            key="study"
+            initial={reduce ? { opacity: 0 } : { height: 0, opacity: 0 }}
+            animate={reduce ? { opacity: 1 } : { height: "auto", opacity: 1 }}
+            exit={reduce ? { opacity: 0 } : { height: 0, opacity: 0 }}
+            transition={{ duration: reduce ? 0.12 : 0.32, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden"
+          >
+            <CaseStudy />
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function SectionTitle({ children }: { children: ReactNode }) {
+  return <h3 className="text-xl font-bold tracking-tight text-white">{children}</h3>;
+}
+
+function CaseStudy() {
+  return (
+    <div className="space-y-8 border-t border-[#374151]/60 bg-[#0B0F19]/60 px-4 py-6 sm:px-5">
+      <div className="grid gap-3 lg:grid-cols-[0.9fr_1.1fr]">
+        <section className={cn(glass, "px-4 py-4")}>
+          <p className={monoLabel}>The problem</p>
+          <ul className="mt-3 space-y-2">
+            {fluxoCaseStudy.problem.map((line) => (
+              <li key={line} className="flex gap-2.5 text-sm leading-relaxed text-[#9CA3AF]">
+                <span aria-hidden className="mt-[7px] size-1.5 shrink-0 rounded-full bg-[#6B7280]" />
+                {line}
+              </li>
+            ))}
+          </ul>
+        </section>
+        <section className={cn(glass, "border-[#30C0B0]/40 px-4 py-4")}>
+          <p className="font-mono text-[11px] tracking-[0.14em] text-[#40E0D0] uppercase">
+            The solution · event-driven recovery
+          </p>
+          <ol className="mt-3 grid gap-3 sm:grid-cols-2">
+            {fluxoCaseStudy.solution.map((item, index) => (
+              <li key={item.step}>
+                <p className="font-bold tracking-tight">
+                  <span className="mr-2 font-mono text-xs text-[#40E0D0]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  {item.step}
+                </p>
+                <p className="mt-1 text-sm leading-relaxed text-[#9CA3AF]">{item.detail}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+      </div>
+
+      <section>
+        <SectionTitle>The pipeline</SectionTitle>
+        <ol className="mt-3 flex flex-col gap-1.5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-2">
+          {fluxoCaseStudy.pipeline.map((node, index) => (
+            <li key={node} className="flex items-center gap-2">
+              {index > 0 ? (
+                <span aria-hidden className="pl-3 font-mono text-[#30C0B0] sm:pl-0">
+                  <span className="sm:hidden">↓</span>
+                  <span className="hidden sm:inline">→</span>
+                </span>
+              ) : null}
+              <span
+                className={cn(
+                  "rounded-lg border px-3 py-1.5 font-mono text-[12px]",
+                  index === fluxoCaseStudy.pipeline.length - 1
+                    ? "border-[#40E0D0] bg-[#40E0D0]/15 text-[#70F0E0]"
+                    : "border-[#374151] bg-[#1F2937]/60 text-[#F9FAFB]",
+                )}
+              >
+                {node}
+              </span>
+            </li>
+          ))}
+        </ol>
+        <p className="mt-2 font-mono text-[11px] text-[#9CA3AF]">{fluxoCaseStudy.pipelineNote}</p>
+      </section>
+
+      <section>
+        <SectionTitle>Architecture decisions</SectionTitle>
+        <ul className="mt-3 grid gap-3 md:grid-cols-3">
+          {fluxoCaseStudy.decisions.map((item) => (
+            <li key={item.title} className={cn(glass, "px-4 py-4")}>
+              <p className="font-bold tracking-tight text-[#70F0E0]">{item.title}</p>
+              <p className="mt-1.5 text-sm leading-relaxed text-[#9CA3AF]">{item.detail}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <SectionTitle>What&apos;s built</SectionTitle>
+        <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+          {fluxoCaseStudy.features.map((item) => (
+            <li key={item.title} className={cn(glass, "px-4 py-3")}>
+              <p className="font-semibold">{item.title}</p>
+              <p className="mt-1 text-sm leading-relaxed text-[#9CA3AF]">{item.detail}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section>
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <SectionTitle>Projected clinic impact</SectionTitle>
+          <p className="font-mono text-[11px] text-[#9CA3AF]">Pre-launch model, per clinic</p>
+        </div>
+        <dl className="mt-3 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          {fluxoCaseStudy.impact.map((stat) => (
+            <div key={stat.label} className={cn(glass, "flex flex-col-reverse px-4 py-3")}>
+              <dt className="mt-1 text-[12px] text-[#9CA3AF]">{stat.label}</dt>
+              <dd className="font-mono text-xl font-bold text-white sm:text-2xl">{stat.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <section>
+        <SectionTitle>The stack</SectionTitle>
+        <dl className="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {fluxoCaseStudy.stack.map((group) => (
+            <div key={group.group}>
+              <dt className={monoLabel}>{group.group}</dt>
+              <dd className="mt-2 flex flex-wrap gap-1.5">
+                {group.items.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-[#374151] bg-[#1F2937]/60 px-2.5 py-0.5 text-[12px] font-medium text-[#F9FAFB]"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
     </div>
   );
 }

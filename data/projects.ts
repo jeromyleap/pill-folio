@@ -204,9 +204,9 @@ export const projects: Project[] = [
     title: "Fluxo",
     eyebrow: "Clinic revenue engine",
     description:
-      "Fluxo recovers lost revenue by auto-filling canceled medical and dental appointments — with zero staff intervention.",
+      "Fluxo intercepts appointment cancellations through EHR connections and refills the empty slot from the patient waitlist — 24/7, with zero staff overhead.",
     value: "Canceled slots, refilled on their own.",
-    tech: ["Revenue recovery", "Waitlist automation", "Medical & dental"],
+    tech: ["React 19", "TypeScript", "MCP", "Twilio"],
     liveUrl: "https://ais-pre-bgrxyrol57h3b4upmi7gd5-391818798699.us-east1.run.app",
     screenshotAlt: "Illustrated envelopes, calendar slot, and coins for Fluxo",
     theme: {
