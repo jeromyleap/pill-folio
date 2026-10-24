@@ -2,8 +2,7 @@
 
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Outlines } from "@react-three/drei";
-import { MathUtils, type DataTexture, type Group } from "three";
+import { BackSide, MathUtils, type DataTexture, type Group } from "three";
 
 import { INK, TOP } from "@/components/pill-box-3d/dimensions";
 
@@ -15,10 +14,45 @@ const SPILL = [
   { p: [0.24, 0.42, 0.62], r: [-0.4, 0.8, 1.6], tone: 0 },
 ] as const;
 
+const R = 0.092;
+const LEN = 0.19;
+
+/**
+ * Same visual language as the 2D `Capsule` on project cards:
+ * flat solid fill (no lighting), thick ink border, and a white gloss fleck.
+ */
+function CapsulePill({ color }: { color: string }) {
+  return (
+    <group rotation={[0, 0, Math.PI / 2]}>
+      {/* Ink rim via inverted hull — matches border-2 border-ink */}
+      <mesh scale={1.18} raycast={() => null}>
+        <capsuleGeometry args={[R, LEN, 6, 16]} />
+        <meshBasicMaterial color={INK} side={BackSide} toneMapped={false} />
+      </mesh>
+
+      {/* Flat graphic body — matches the unlit CSS capsule fill */}
+      <mesh castShadow>
+        <capsuleGeometry args={[R, LEN, 6, 16]} />
+        <meshBasicMaterial color={color} toneMapped={false} />
+      </mesh>
+
+      {/* Specular gloss fleck — matches the white oval on `Capsule` */}
+      <mesh
+        position={[0.05, 0.028, 0.07]}
+        rotation={[0.4, 0.2, 0.55]}
+        scale={[0.9, 0.42, 0.5]}
+        raycast={() => null}
+      >
+        <sphereGeometry args={[0.058, 12, 12]} />
+        <meshBasicMaterial color="#ffffff" toneMapped={false} />
+      </mesh>
+    </group>
+  );
+}
+
 export function Pills({
   open,
   colors,
-  gradient,
   reduce,
 }: {
   open: boolean;
@@ -71,11 +105,7 @@ export function Pills({
           scale={0.001}
           visible={false}
         >
-          <mesh castShadow rotation={[0, 0, Math.PI / 2]}>
-            <capsuleGeometry args={[0.075, 0.17, 4, 12]} />
-            <meshToonMaterial color={colors[pill.tone]} gradientMap={gradient} />
-            <Outlines thickness={0.018} color={INK} />
-          </mesh>
+          <CapsulePill color={colors[pill.tone]} />
         </group>
       ))}
     </group>
