@@ -5,8 +5,9 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, BadgeCheck, ChevronDown, X } from "lucide-react";
 
 import type { Project } from "@/data/projects";
-import { healthScoutCaseStudy as brief } from "@/data/healthscout";
+import { healthScoutCaseStudy as brief, healthScoutDesign } from "@/data/healthscout";
 import { useCardFocus } from "@/components/use-card-focus";
+import { BrandDesign } from "@/components/brand-design";
 import { cn } from "@/lib/utils";
 
 const focusRing =
@@ -122,6 +123,12 @@ export function HealthScoutCard({
               ))}
             </ul>
           </div>
+
+          <BrandDesign
+            labelClassName={meta}
+            colors={[...healthScoutDesign.colors]}
+            fonts={[...healthScoutDesign.fonts]}
+          />
 
           <div className="mt-auto flex flex-wrap gap-2 pt-1">
             {project.liveUrl ? (

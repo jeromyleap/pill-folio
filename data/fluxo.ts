@@ -6,6 +6,19 @@
  * illustration of the flow, not a capture of the product.
  */
 
+export const fluxoDesign = {
+  colors: [
+    { name: "Turquoise primary", hex: "#40E0D0" },
+    { name: "Grey 950", hex: "#0B0F19" },
+    { name: "Grey 900", hex: "#111827" },
+    { name: "White", hex: "#FFFFFF" },
+  ],
+  fonts: [
+    { name: "Inter", role: "Primary UI", className: "font-fluxo font-bold" },
+    { name: "SF Mono", role: "Logs & metrics", className: "font-mono" },
+  ],
+} as const;
+
 export const fluxoBrief = {
   tagline: { lead: "Autonomous clinic", accent: "revenue engine." },
   role: "Founder, Lead Product Engineer & System Architect",

@@ -5,8 +5,9 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, ChevronDown, X } from "lucide-react";
 
 import type { Project } from "@/data/projects";
-import { fluxoBrief, fluxoCaseStudy, fluxoLog, fluxoSchedule } from "@/data/fluxo";
+import { fluxoBrief, fluxoCaseStudy, fluxoDesign, fluxoLog, fluxoSchedule } from "@/data/fluxo";
 import { useCardFocus } from "@/components/use-card-focus";
+import { BrandDesign } from "@/components/brand-design";
 import { cn } from "@/lib/utils";
 
 const focusRing =
@@ -107,6 +108,13 @@ export function FluxoCard({
               ))}
             </ul>
           </div>
+
+          <BrandDesign
+            tone="dark"
+            labelClassName={monoLabel}
+            colors={[...fluxoDesign.colors]}
+            fonts={[...fluxoDesign.fonts]}
+          />
 
           <div className="mt-auto flex flex-wrap gap-2 pt-1">
             {project.liveUrl ? (

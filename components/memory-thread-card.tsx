@@ -5,8 +5,9 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, ChevronDown, X } from "lucide-react";
 
 import type { Project } from "@/data/projects";
-import { memoryThreadCaseStudy as brief } from "@/data/memory-thread";
+import { memoryThreadCaseStudy as brief, memoryThreadDesign } from "@/data/memory-thread";
 import { useCardFocus } from "@/components/use-card-focus";
+import { BrandDesign } from "@/components/brand-design";
 import { cn } from "@/lib/utils";
 
 const GRAIN =
@@ -127,6 +128,13 @@ export function MemoryThreadCard({
               ))}
             </ul>
           </div>
+
+          <BrandDesign
+            tone="dark"
+            labelClassName={kicker}
+            colors={[...memoryThreadDesign.colors]}
+            fonts={[...memoryThreadDesign.fonts]}
+          />
 
           <div className="mt-auto flex flex-wrap gap-2 pt-1">
             {project.liveUrl ? (

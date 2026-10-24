@@ -23,6 +23,18 @@ export const wristedBrand = {
   },
   ctaGradient: "linear-gradient(135deg, #8B5CF6, #7B5CFA)",
   headlineGradient: "linear-gradient(90deg, #C4B5FD, #A78BFA, #EC4899)",
+  design: {
+    colors: [
+      { name: "Landing violet", hex: "#7B5CFA" },
+      { name: "Charcoal", hex: "#272A32" },
+      { name: "Lavender", hex: "#C4B5FD" },
+      { name: "Pink highlight", hex: "#EC4899" },
+    ],
+    fonts: [
+      { name: "Outfit", role: "Headings", className: "font-wristed-heading font-bold" },
+      { name: "Inter", role: "Body & UI", className: "font-wristed-body" },
+    ],
+  } as const,
 };
 
 export const wristedCaseStudy = {

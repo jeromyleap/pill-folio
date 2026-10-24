@@ -5,6 +5,18 @@
  * in data/projects.ts when a production domain exists.
  */
 
+export const healthScoutDesign = {
+  colors: [
+    { name: "Primary emerald", hex: "#059669" },
+    { name: "Accent emerald", hex: "#10b981" },
+    { name: "Zinc 950", hex: "#09090b" },
+    { name: "Slate canvas", hex: "#f8fafc" },
+  ],
+  fonts: [
+    { name: "Inter", role: "Primary UI", className: "font-healthscout font-semibold" },
+  ],
+} as const;
+
 export const healthScoutCaseStudy = {
   role: "Lead Full-Stack Architect & Product Designer",
   cta: "Open live demo",

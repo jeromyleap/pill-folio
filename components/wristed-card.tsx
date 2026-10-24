@@ -7,6 +7,7 @@ import { ArrowUpRight, ChevronDown, X } from "lucide-react";
 import type { Project } from "@/data/projects";
 import { wristedBrand, wristedCaseStudy, wristedLooks } from "@/data/wristed";
 import { useCardFocus } from "@/components/use-card-focus";
+import { BrandDesign } from "@/components/brand-design";
 import { cn } from "@/lib/utils";
 
 type Shape = "square" | "round";
@@ -112,6 +113,13 @@ export function WristedCard({
               ))}
             </ul>
           </div>
+
+          <BrandDesign
+            tone="dark"
+            labelClassName={eyebrowClass}
+            colors={[...wristedBrand.design.colors]}
+            fonts={[...wristedBrand.design.fonts]}
+          />
 
           <div className="mt-auto flex flex-wrap gap-2 pt-1">
             {project.liveUrl ? (

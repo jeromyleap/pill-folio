@@ -5,6 +5,20 @@
  * straight from the owner's brief; update them here when they change.
  */
 
+export const memoryThreadDesign = {
+  colors: [
+    { name: "Deep midnight", hex: "#020617" },
+    { name: "Parchment", hex: "#f5f5f4" },
+    { name: "Antique bronze", hex: "#c5ad7e" },
+    { name: "Candle glow", hex: "#f59e0b" },
+  ],
+  fonts: [
+    { name: "Playfair Display", role: "Headings & quotes", className: "font-memory-serif" },
+    { name: "Inter", role: "Body & UI", className: "font-memory-sans" },
+    { name: "Great Vibes", role: "Inscriptions", className: "font-memory-script text-2xl leading-none" },
+  ],
+} as const;
+
 export const memoryThreadCaseStudy = {
   tagline: "Built for quiet moments.",
   inscription: "Preserved in light",
