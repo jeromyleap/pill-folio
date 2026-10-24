@@ -1,9 +1,22 @@
 /**
  * Peachy Clean brand brief, used by the Friday card.
  *
- * The brief covers positioning and the palette; it doesn't list a full
- * stack or results, so the card sticks to what it states.
+ * Palette tokens come from the brief. Heading/body faces match the live
+ * site (editorial serif + Geist); the brief did not name typefaces.
  */
+
+export const peachyDesign = {
+  colors: [
+    { name: "Warm Cream", hex: "#FAF9F6" },
+    { name: "Peachy Gold", hex: "#FFCB9A" },
+    { name: "French Sage", hex: "#B2AC88" },
+    { name: "Deep Olive", hex: "#5A5A40" },
+  ],
+  fonts: [
+    { name: "Georgia", role: "Headings", className: "font-peachy-serif" },
+    { name: "Geist", role: "Body & UI", className: "font-peachy-sans font-semibold" },
+  ],
+} as const;
 
 export const peachyBrief = {
   tagline: "Professional Cleaning Services",
@@ -38,13 +51,5 @@ export const peachyBrief = {
       title: "Dual-role access",
       detail: "Role-based access control: two roles, each with its own views and permissions, behind one sign-in.",
     },
-  ],
-  palette: [
-    { name: "Warm Cream", role: "Canvas", hex: "#FAF9F6", oklch: "0.98 0.01 85" },
-    { name: "Peachy Gold", role: "Primary accent", hex: "#FFCB9A", oklch: "0.85 0.12 65" },
-    { name: "French Sage", role: "Secondary", hex: "#B2AC88", oklch: "0.72 0.05 110" },
-    { name: "Deep Olive", role: "Headings & text", hex: "#5A5A40", oklch: "0.35 0.05 110" },
-    { name: "Pure White", role: "Surface", hex: "#FFFFFF", oklch: "1 0 0" },
-    { name: "Alert", role: "Destructive", hex: "#DC2626", oklch: "0.577 0.245 27.3" },
   ],
 };

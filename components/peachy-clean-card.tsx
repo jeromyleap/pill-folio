@@ -5,7 +5,8 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, ChevronDown, X } from "lucide-react";
 
 import type { Project } from "@/data/projects";
-import { peachyBrief as brief } from "@/data/peachy-clean";
+import { peachyBrief as brief, peachyDesign } from "@/data/peachy-clean";
+import { BrandDesign } from "@/components/brand-design";
 import { HeroMediaLink } from "@/components/hero-media-link";
 import { useCardFocus } from "@/components/use-card-focus";
 import { cn } from "@/lib/utils";
@@ -126,6 +127,12 @@ export function PeachyCleanCard({
             </ul>
           </div>
 
+          <BrandDesign
+            labelClassName={label}
+            colors={[...peachyDesign.colors]}
+            fonts={[...peachyDesign.fonts]}
+          />
+
           <div className="mt-auto flex flex-wrap gap-2 pt-1">
             {project.liveUrl ? (
               <a
@@ -210,28 +217,6 @@ function CaseStudy() {
         </ul>
       </section>
 
-      <section>
-        <div className="flex flex-wrap items-baseline justify-between gap-2">
-          <h3 className="font-peachy-serif text-2xl">The palette</h3>
-          <p className="text-[12px] text-[#5A5A40]/90">OKLCH tokens with hex fallbacks · WCAG AA</p>
-        </div>
-        <ul className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-          {brief.palette.map((swatch) => (
-            <li key={swatch.hex} className={cn("overflow-hidden rounded-2xl bg-white", sageBorder)}>
-              <div
-                className="h-14 border-b border-[#B2AC88]/20"
-                style={{ backgroundColor: swatch.hex }}
-              />
-              <div className="px-3 py-2.5">
-                <p className="text-[13px] font-semibold">{swatch.name}</p>
-                <p className="text-[11px] text-[#5A5A40]/90">{swatch.role}</p>
-                <p className="mt-1 font-mono text-[11px]">{swatch.hex}</p>
-                <p className="font-mono text-[10px] text-[#5A5A40]/90">oklch({swatch.oklch})</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
     </div>
   );
 }
