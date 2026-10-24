@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 import type { Project } from "@/data/projects";
-import { Capsule } from "@/components/capsule";
 import { DayChips } from "@/components/day-chips";
 import { PillPlanner } from "@/components/pill-planner";
 import { ProjectCard } from "@/components/project-card";
@@ -66,21 +65,21 @@ export function Portfolio({ projects }: { projects: Project[] }) {
       <main className="flex min-h-0 flex-1 flex-col">
         <section
           id="planner"
-          className="mx-auto flex w-full max-w-[1040px] min-h-0 flex-1 flex-col justify-center px-3 py-3 sm:px-6 sm:py-4 lg:py-4"
+          className="mx-auto flex w-full max-w-[1040px] min-h-0 flex-1 flex-col justify-center px-3 py-1 sm:px-6 sm:py-1.5 lg:py-1"
         >
-          <div className="stage-circle relative flex min-h-0 flex-1 flex-col overflow-hidden rounded-[32px] border-[3px] border-ink px-3 pt-6 pb-5 sm:rounded-[48px] sm:px-8 sm:pt-7 sm:pb-6 lg:max-h-[calc(100dvh-7rem)] lg:flex-none lg:px-9 lg:pt-7 lg:pb-6">
+          <div className="stage-circle relative flex min-h-0 flex-1 flex-col overflow-hidden rounded-[32px] border-[3px] border-ink px-3 pt-5 pb-4 sm:rounded-[48px] sm:px-8 sm:pt-6 sm:pb-5 lg:max-h-[calc(100dvh-5.25rem)] lg:flex-none lg:px-9 lg:pt-5 lg:pb-4">
             <div
               aria-hidden
-              className="stage-disc pointer-events-none absolute top-[46%] left-1/2 aspect-square w-[min(118%,720px)] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-ink/20"
+              className="stage-disc pointer-events-none absolute top-[48%] left-1/2 aspect-square w-[min(122%,760px)] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-ink/20"
             />
             <div className="relative mx-auto max-w-xl shrink-0 text-center">
               <p className="text-[10px] font-extrabold tracking-[0.22em] text-ink-soft uppercase sm:text-xs">
                 nicheleap.com
               </p>
-              <h1 className="mt-1.5 font-display text-[2.35rem] leading-[0.95] text-ink sm:text-5xl lg:text-[3.25rem]">
+              <h1 className="mt-1.5 font-display text-[2.35rem] leading-[0.95] text-ink sm:text-5xl lg:text-[3.1rem]">
                 Have a day.
               </h1>
-              <p className="mx-auto mt-2 max-w-lg text-sm leading-snug text-ink-soft sm:mt-2.5 sm:text-[0.95rem] sm:leading-relaxed">
+              <p className="mx-auto mt-1.5 max-w-lg text-sm leading-snug text-ink-soft sm:mt-2 sm:text-[0.95rem] sm:leading-relaxed">
                 A weekly pill box for the work I keep close.
               </p>
             </div>
@@ -91,7 +90,7 @@ export function Portfolio({ projects }: { projects: Project[] }) {
               </p>
             ) : (
               <>
-                <div className="relative -mx-3 mt-2 min-h-[240px] flex-1 sm:-mx-8 sm:min-h-[280px] lg:-mx-9 lg:mt-3 lg:h-[min(42dvh,400px)] lg:flex-none">
+                <div className="relative -mx-3 mt-1 min-h-[260px] flex-1 sm:-mx-8 sm:min-h-[320px] lg:-mx-9 lg:mt-2 lg:h-[min(52dvh,480px)] lg:flex-none">
                   <PillBox3D
                     projects={projects}
                     activeId={activeId}
@@ -112,16 +111,9 @@ export function Portfolio({ projects }: { projects: Project[] }) {
                     }
                   />
                 </div>
-                <div className="relative mx-auto mt-3 w-full max-w-2xl shrink-0 sm:mt-4">
+                <div className="relative mx-auto mt-2.5 w-full max-w-2xl shrink-0 sm:mt-3">
                   <DayChips projects={projects} activeId={activeId} onSelect={select} />
                 </div>
-                <p className="relative mt-3.5 flex shrink-0 items-center justify-center gap-2 text-center text-xs text-ink-soft sm:mt-4 sm:text-sm">
-                  <span aria-hidden className="inline-flex items-center">
-                    <Capsule a="#c5dbb8" b="#fffaf3" className="-rotate-12" />
-                    <Capsule a="#d9c8f0" b="#f8c8a8" className="-ml-1 rotate-12" />
-                  </span>
-                  Pick a lid — the day spills out over the box.
-                </p>
               </>
             )}
           </div>

@@ -174,12 +174,12 @@ export function PillBoxScene({
         dampingFactor={0.08}
         rotateSpeed={0.6}
         zoomSpeed={0.6}
-        minDistance={distance * 0.72}
-        maxDistance={distance * 1.3}
-        minPolarAngle={0.55}
-        maxPolarAngle={1.45}
-        minAzimuthAngle={-0.75}
-        maxAzimuthAngle={0.75}
+        minDistance={distance * 0.62}
+        maxDistance={distance * 1.45}
+        minPolarAngle={0.42}
+        maxPolarAngle={1.52}
+        minAzimuthAngle={-0.95}
+        maxAzimuthAngle={0.95}
         target={[0, 0, 0]}
       />
     </>
