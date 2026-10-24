@@ -76,7 +76,6 @@ export function MemoryThreadCard({
           </div>
         </div>
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
-          <Candle reduce={reduce} />
           <button
             ref={closeRef}
             type="button"
@@ -122,7 +121,6 @@ export function MemoryThreadCard({
           <p className="text-[15px] leading-relaxed text-[#cbd5e1]">
             {project.description}
           </p>
-
 
           <div>
             <p className={kicker}>Built with</p>
@@ -193,24 +191,6 @@ export function MemoryThreadCard({
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </div>
-  );
-}
-
-function Candle({ reduce }: { reduce: boolean }) {
-  return (
-    <div aria-hidden className="relative mr-1 hidden h-10 w-6 sm:block">
-      <motion.div
-        className="absolute top-0.5 left-1/2 h-4 w-2.5 -ml-[5px] origin-bottom rounded-[50%_50%_45%_45%/65%_65%_35%_35%] bg-[radial-gradient(circle_at_50%_70%,#fff7d6_0%,#fbbf24_45%,#f59e0b_80%)]"
-        animate={
-          reduce
-            ? undefined
-            : { scaleY: [1, 1.12, 0.94, 1.06, 1], scaleX: [1, 0.92, 1.04, 0.96, 1], rotate: [0, -3, 2, -1, 0] }
-        }
-        transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <div className="absolute top-[18px] left-1/2 h-[3px] w-px -translate-x-1/2 bg-[#3a3226]" />
-      <div className="absolute top-[21px] left-1/2 h-[19px] w-3.5 -translate-x-1/2 rounded-t-[3px] bg-gradient-to-b from-[#f5f5f4] to-[#dfcca7]" />
     </div>
   );
 }
