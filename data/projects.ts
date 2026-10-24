@@ -96,7 +96,8 @@ export const projects: Project[] = [
       deep: "#6f9468",
       well: "#e7f2e1",
       cream: "#f4faef",
-      pills: ["#8fb583", "#f6dc8e", "#fffaf3"],
+      // Brand: Old Glory red / white / blue
+      pills: ["#B22234", "#FFFFFF", "#3C3B6E"],
     },
     kind: "education",
     illustration: "education",
@@ -123,7 +124,8 @@ export const projects: Project[] = [
       deep: "#8d74b5",
       well: "#f3ecfb",
       cream: "#f8f4fc",
-      pills: ["#b9a0dc", "#f0b8c8", "#fffaf3"],
+      // Brand: parchment / antique bronze / candle glow
+      pills: ["#f5f5f4", "#c5ad7e", "#f59e0b"],
     },
     kind: "project",
     illustration: "memory",
@@ -150,7 +152,8 @@ export const projects: Project[] = [
       deep: "#e08a62",
       well: "#fff1e8",
       cream: "#fff8f3",
-      pills: ["#f0a67e", "#f6dc8e", "#fffaf3"],
+      // Brand: landing violet / lavender / pink
+      pills: ["#7B5CFA", "#C4B5FD", "#EC4899"],
     },
     kind: "project",
     illustration: "wristed",
@@ -177,7 +180,8 @@ export const projects: Project[] = [
       deep: "#5e93ad",
       well: "#e7f4fa",
       cream: "#f4fafc",
-      pills: ["#7eb6ce", "#c5dbb8", "#fffaf3"],
+      // Brand: primary emerald / accent emerald / zinc
+      pills: ["#059669", "#10b981", "#09090b"],
     },
     kind: "project",
     illustration: "healthscout",
@@ -201,7 +205,8 @@ export const projects: Project[] = [
       deep: "#c47288",
       well: "#fdeef2",
       cream: "#fff7f8",
-      pills: ["#e7a0b4", "#f6dc8e", "#fffaf3"],
+      // Brand: turquoise / grey 900 / white
+      pills: ["#40E0D0", "#111827", "#FFFFFF"],
     },
     kind: "project",
     illustration: "fluxo",
@@ -228,7 +233,8 @@ export const projects: Project[] = [
       deep: "#cfa548",
       well: "#fff8e2",
       cream: "#fffbf0",
-      pills: ["#f0c85a", "#f4c4a8", "#fffaf3"],
+      // Brand: peachy gold / french sage / deep olive
+      pills: ["#FFCB9A", "#B2AC88", "#5A5A40"],
     },
     kind: "project",
     illustration: "peachy",
