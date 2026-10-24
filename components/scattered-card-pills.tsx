@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils";
 
 /**
  * Edge capsules for an open project card. Colors come from the same
- * `theme.pills` trio the 3D compartment spills — solid halves so they read
- * like the toon pills that just left the box.
+ * `theme.pills` trio the 3D compartment spills — flat ink-rimmed capsules
+ * that match the spill styling.
  */
 const SPOTS = [
   { className: "-top-2 -left-1 rotate-[-28deg] sm:-top-3 sm:-left-3", tone: 0 },
