@@ -159,7 +159,8 @@ export function Portfolio({ projects }: { projects: Project[] }) {
             exit={{ opacity: 0 }}
             transition={{
               duration: reduce ? 0.12 : 0.4,
-              delay: reduce ? 0.45 : 1.05,
+              // Dim arrives as the zoom accelerates after the spill.
+              delay: reduce ? 0.45 : 0.95,
             }}
           >
             {/* Viewport-locked dim/blur — stays put while the card scrollport moves */}
@@ -187,25 +188,27 @@ export function Portfolio({ projects }: { projects: Project[] }) {
                         ? { opacity: 0 }
                         : {
                             opacity: 0,
-                            scale: 0.045,
+                            scale: 0.028,
                             x: spillOrigin.x,
                             y: spillOrigin.y,
-                            rotateX: 58,
-                            rotateZ: -3,
-                            filter: "blur(14px)",
+                            rotateX: 64,
+                            rotateZ: -4,
+                            filter: "blur(18px)",
                           }
                     }
                     animate={
                       reduce
                         ? { opacity: 1 }
                         : {
-                            opacity: 1,
-                            scale: 1,
-                            x: 0,
-                            y: 0,
-                            rotateX: 0,
-                            rotateZ: 0,
-                            filter: "blur(0px)",
+                            // Two beats: slow crawl out of the tray with the spill,
+                            // then a fast zoom into the settled card.
+                            opacity: [0, 0.5, 1],
+                            scale: [0.028, 0.13, 1],
+                            x: [spillOrigin.x, spillOrigin.x * 0.78, 0],
+                            y: [spillOrigin.y, spillOrigin.y * 0.62, 0],
+                            rotateX: [64, 38, 0],
+                            rotateZ: [-4, -1.5, 0],
+                            filter: ["blur(18px)", "blur(9px)", "blur(0px)"],
                           }
                     }
                     exit={
@@ -213,10 +216,10 @@ export function Portfolio({ projects }: { projects: Project[] }) {
                         ? { opacity: 0 }
                         : {
                             opacity: 0,
-                            scale: 0.18,
-                            x: spillOrigin.x * 0.45,
-                            y: spillOrigin.y * 0.45 + 24,
-                            rotateX: 28,
+                            scale: 0.16,
+                            x: spillOrigin.x * 0.4,
+                            y: spillOrigin.y * 0.4 + 20,
+                            rotateX: 26,
                             filter: "blur(8px)",
                           }
                     }
@@ -224,48 +227,15 @@ export function Portfolio({ projects }: { projects: Project[] }) {
                       reduce
                         ? { duration: 0.18, delay: 0.45 }
                         : {
-                            // Springs start after the spill; opacity lags so a speck
-                            // is already rising out of the tray before the card reads.
-                            scale: {
-                              type: "spring",
-                              stiffness: 64,
-                              damping: 16,
-                              mass: 1.45,
-                              delay: 1.2,
-                            },
-                            x: {
-                              type: "spring",
-                              stiffness: 70,
-                              damping: 18,
-                              mass: 1.3,
-                              delay: 1.2,
-                            },
-                            y: {
-                              type: "spring",
-                              stiffness: 70,
-                              damping: 18,
-                              mass: 1.3,
-                              delay: 1.2,
-                            },
-                            rotateX: {
-                              type: "spring",
-                              stiffness: 78,
-                              damping: 18,
-                              mass: 1.2,
-                              delay: 1.2,
-                            },
-                            rotateZ: {
-                              type: "spring",
-                              stiffness: 90,
-                              damping: 20,
-                              delay: 1.2,
-                            },
-                            opacity: {
-                              duration: 0.55,
-                              delay: 1.4,
-                              ease: [0.22, 1, 0.36, 1],
-                            },
-                            filter: { duration: 0.65, delay: 1.32, ease: "easeOut" },
+                            // Start with the first pills (~0.18s). Mid keyframe (~1.05s
+                            // wall time) lands as the spill settles, then the zoom runs.
+                            delay: 0.18,
+                            duration: 1.75,
+                            times: [0, 0.5, 1],
+                            ease: [
+                              [0.4, 0.0, 0.55, 1], // slow creep while pills spill
+                              [0.12, 0.85, 0.2, 1], // accelerate into place
+                            ],
                           }
                     }
                     style={{
