@@ -207,7 +207,7 @@ export const projects: Project[] = [
       "Fluxo intercepts appointment cancellations through EHR connections and refills the empty slot from the patient waitlist — 24/7, with zero staff overhead.",
     value: "Canceled slots, refilled on their own.",
     tech: ["React 19", "TypeScript", "MCP", "Twilio"],
-    liveUrl: "https://ais-pre-bgrxyrol57h3b4upmi7gd5-391818798699.us-east1.run.app",
+    liveUrl: "https://fluxo-studio-2.ai.studio/",
     screenshotAlt: "Illustrated envelopes, calendar slot, and coins for Fluxo",
     theme: {
       lid: "#f3c3cf",
