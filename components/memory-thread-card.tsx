@@ -2,10 +2,10 @@
 
 import { useId, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, ChevronDown, Moon, Play, Sun, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Moon, Sun, X } from "lucide-react";
 
 import type { Project } from "@/data/projects";
-import { memoryThreadCaseStudy as brief, memoryWaveform } from "@/data/memory-thread";
+import { memoryThreadCaseStudy as brief } from "@/data/memory-thread";
 import { useCardFocus } from "@/components/use-card-focus";
 import { cn } from "@/lib/utils";
 
@@ -128,7 +128,6 @@ export function MemoryThreadCard({
             {project.description}
           </p>
 
-          <VoiceMemo className={dim} />
 
           <div className={dim}>
             <p className={kicker}>Built with</p>
@@ -211,35 +210,6 @@ function Candle({ reduce }: { reduce: boolean }) {
       />
       <div className="absolute top-[18px] left-1/2 h-[3px] w-px -translate-x-1/2 bg-[#3a3226]" />
       <div className="absolute top-[21px] left-1/2 h-[19px] w-3.5 -translate-x-1/2 rounded-t-[3px] bg-gradient-to-b from-[#f5f5f4] to-[#dfcca7]" />
-    </div>
-  );
-}
-
-function VoiceMemo({ className }: { className?: string }) {
-  return (
-    <div
-      aria-hidden
-      className={cn(
-        "flex items-center gap-3 rounded-2xl border border-white/[0.06] bg-[#0f172a] px-3 py-2.5",
-        className,
-      )}
-    >
-      <span
-        className="grid size-9 shrink-0 place-items-center rounded-full text-[#020617]"
-        style={{ backgroundImage: BRONZE_GRADIENT }}
-      >
-        <Play className="ml-0.5 size-4 fill-current" />
-      </span>
-      <div className="flex h-8 flex-1 items-center gap-[3px]">
-        {memoryWaveform.map((height, index) => (
-          <span
-            key={index}
-            className={cn("w-[3px] flex-1 rounded-full", index < 11 ? "bg-[#dfcca7]" : "bg-[#94a3b8]/40")}
-            style={{ height: `${Math.round(height * 100)}%` }}
-          />
-        ))}
-      </div>
-      <span className="font-mono text-[11px] text-[#94a3b8]">0:30</span>
     </div>
   );
 }
