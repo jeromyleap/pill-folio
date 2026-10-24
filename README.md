@@ -38,6 +38,7 @@ All copy, links, colors, and images live in [`data/projects.ts`](data/projects.t
 - `theme` recolors that day's lid, well, and pills.
 - `liveUrl` turns on the visit link and the live-metadata panel.
 - Saturday gallery tiles use `image` the same way. Leave it unset to keep the illustration.
+- Peachy Clean has its own warm cream-and-sage card (`components/peachy-clean-card.tsx`), with brief and palette in [`data/peachy-clean.ts`](data/peachy-clean.ts).
 - Fluxo has its own graphite-and-turquoise card (`components/fluxo-card.tsx`) with an illustrative schedule-recovery panel and a collapsible case study. Copy, projections, and stack live in [`data/fluxo.ts`](data/fluxo.ts).
 - HealthScout has its own clinical emerald card (`components/healthscout-card.tsx`), with copy and stack in [`data/healthscout.ts`](data/healthscout.ts).
 - The Memory Thread has its own candlelit card (`components/memory-thread-card.tsx`), with copy, stats, and stack in [`data/memory-thread.ts`](data/memory-thread.ts).

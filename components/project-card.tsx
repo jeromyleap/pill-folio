@@ -11,6 +11,7 @@ import { useCardFocus } from "@/components/use-card-focus";
 import { FluxoCard } from "@/components/fluxo-card";
 import { HealthScoutCard } from "@/components/healthscout-card";
 import { MemoryThreadCard } from "@/components/memory-thread-card";
+import { PeachyCleanCard } from "@/components/peachy-clean-card";
 import { WristedCard } from "@/components/wristed-card";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -25,6 +26,9 @@ export function ProjectCard({
 }) {
   if (project.id === "memory-thread") {
     return <MemoryThreadCard project={project} onClose={onClose} />;
+  }
+  if (project.id === "peachy-clean") {
+    return <PeachyCleanCard project={project} onClose={onClose} />;
   }
   if (project.id === "fluxo") {
     return <FluxoCard project={project} onClose={onClose} />;

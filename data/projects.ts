@@ -226,14 +226,16 @@ export const projects: Project[] = [
     shortLabel: "Fr",
     lidName: "Peachy",
     title: "Peachy Clean",
-    eyebrow: "peachycleanstp.com",
+    eyebrow: "Luxury cleaning PWA",
     description:
-      "Scheduling and client management for Peachy Clean, a local cleaning business. The web app is the crew's desk — who is coming, when, and how a client gets back in.",
-    value: "The scheduling desk for a local cleaning business.",
-    tech: ["Scheduling", "Client management", "Local business"],
+      "A high-touch Progressive Web App for a luxury residential and commercial cleaning service, with automated scheduling, geospatial dispatch, and role-based access.",
+    value: "Professional Cleaning Services",
+    tech: ["PWA", "Tailwind CSS v4", "OKLCH tokens", "RBAC"],
     liveUrl: "https://peachycleanstp.com",
     logo: "/brand/peachy-clean.png",
-    screenshotAlt: "Illustrated weekly schedule for Peachy Clean",
+    screenshot: "/screenshots/peachy-clean.jpg",
+    screenshotAlt:
+      "Peachy Clean sign-in screen: the peach badge logo, “Professional Cleaning Services,” and a warm cream login card",
     theme: {
       lid: "#f7e2a0",
       deep: "#cfa548",
