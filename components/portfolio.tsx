@@ -81,7 +81,7 @@ export function Portfolio({ projects }: { projects: Project[] }) {
                 Have a day.
               </h1>
               <p className="mx-auto mt-2 max-w-lg text-sm leading-snug text-ink-soft sm:mt-2.5 sm:text-[0.95rem] sm:leading-relaxed">
-                A weekly pill box for the work I keep Close
+                A weekly pill box for the work I keep close.
               </p>
             </div>
 
