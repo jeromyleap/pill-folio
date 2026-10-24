@@ -2,7 +2,19 @@
 
 A weekly pill-planner portfolio for [nicheleap.com](https://nicheleap.com). Sunday through Saturday each open into a project: education, The Memory Thread, Wristed, HealthScout, Fluxo, Peachy Clean, and a Saturday about page.
 
-The page is a cozy, cel-shaded box. Click a lid and it swings open, pastel pills spill out, and a project card slides up. Click outside, press Escape, or pick another day to close it.
+The pill box is a floating 3D scene built with React Three Fiber and drei. It uses toon-shaded pastel lids, ink outlines, and a soft contact shadow. Drag to spin it within a limited arc, scroll or pinch to zoom, and hover a lid to lift it. Click a lid and it hinges open, pills spill out, and that day's card slides into the panel below. Click empty space, press Escape, or pick another day to close it. The day chips under the box do the same thing from the keyboard.
+
+| Day | Lid | Opens |
+| --- | --- | --- |
+| Sunday | sage | Education & resume |
+| Monday | lavender | The Memory Thread |
+| Tuesday | peach | Wristed |
+| Wednesday | sky blue | HealthScout |
+| Thursday | rose | Fluxo |
+| Friday | butter cream | Peachy Clean |
+| Saturday | mint | About me |
+
+The scene lives in [`components/pill-box-3d`](components/pill-box-3d). Browsers without WebGL get the flat illustrated planner instead. Reduced-motion settings stop the idle float and make lid changes instant.
 
 ## Run it
 

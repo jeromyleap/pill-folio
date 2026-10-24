@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useFrame, type ThreeEvent } from "@react-three/fiber";
-import { Outlines, RoundedBox, useCursor } from "@react-three/drei";
+import { RoundedBox, useCursor } from "@react-three/drei";
 import {
   Color,
   MathUtils,
@@ -22,6 +22,7 @@ import {
   PITCH,
   TOP,
 } from "@/components/pill-box-3d/dimensions";
+import { InkHull } from "@/components/pill-box-3d/ink-hull";
 import { Pills } from "@/components/pill-box-3d/pills";
 import { createLidLabel } from "@/components/pill-box-3d/textures";
 
@@ -113,14 +114,23 @@ export function Compartment({
             receiveShadow
           >
             <meshToonMaterial ref={lidMaterial} color={project.theme.lid} gradientMap={gradient} />
-            <Outlines
-              thickness={lit ? 0.05 : 0.034}
+            <InkHull
+              args={[CELL_W, LID_H, LID_D]}
+              radius={0.07}
+              thickness={lit ? 0.04 : 0.024}
               color={lit ? project.theme.deep : INK}
             />
           </RoundedBox>
-          <mesh position={[0, LID_H + 0.002, LID_D / 2]} rotation={[-Math.PI / 2, 0, 0]}>
+          <mesh position={[0, LID_H + 0.006, LID_D / 2]} rotation={[-Math.PI / 2, 0, 0]}>
             <planeGeometry args={[CELL_W * 0.86, LID_D * 0.86]} />
-            <meshBasicMaterial map={label} transparent toneMapped={false} />
+            <meshBasicMaterial
+              map={label}
+              transparent
+              toneMapped={false}
+              polygonOffset
+              polygonOffsetFactor={-2}
+              polygonOffsetUnits={-2}
+            />
           </mesh>
           <RoundedBox
             args={[0.32, 0.08, 0.12]}
@@ -128,7 +138,7 @@ export function Compartment({
             position={[0, LID_H * 0.35, LID_D + 0.04]}
           >
             <meshToonMaterial color={project.theme.deep} gradientMap={gradient} />
-            <Outlines thickness={0.022} color={INK} />
+            <InkHull args={[0.32, 0.08, 0.12]} radius={0.03} thickness={0.016} />
           </RoundedBox>
         </group>
       </group>

@@ -2,13 +2,13 @@
 
 import { use, useEffect, useMemo } from "react";
 import { useThree } from "@react-three/fiber";
-import { ContactShadows, Float, OrbitControls, Outlines, RoundedBox } from "@react-three/drei";
+import { ContactShadows, Float, OrbitControls, RoundedBox } from "@react-three/drei";
 import type { PerspectiveCamera } from "three";
 
 import type { Project } from "@/data/projects";
 import { Compartment } from "@/components/pill-box-3d/compartment";
+import { InkHull } from "@/components/pill-box-3d/ink-hull";
 import {
-  INK,
   SCENE_H,
   TRAY_COLOR,
   TRAY_D,
@@ -80,7 +80,7 @@ function Tray({
     <group position={[0, -0.2, 0]}>
       <RoundedBox args={[TRAY_W, TRAY_H, TRAY_D]} radius={0.22} smoothness={5} receiveShadow castShadow>
         <meshToonMaterial color={TRAY_COLOR} gradientMap={gradient} />
-        <Outlines thickness={0.045} color={INK} />
+        <InkHull args={[TRAY_W, TRAY_H, TRAY_D]} radius={0.22} thickness={0.035} />
       </RoundedBox>
       <RoundedBox
         args={[3.2, 0.34, 0.06]}
@@ -88,7 +88,7 @@ function Tray({
         position={[0, -0.04, TRAY_D / 2 + 0.01]}
       >
         <meshToonMaterial color="#fffaf3" gradientMap={gradient} />
-        <Outlines thickness={0.018} color={INK} />
+        <InkHull args={[3.2, 0.34, 0.06]} radius={0.1} thickness={0.014} />
       </RoundedBox>
       <mesh position={[0, -0.04, TRAY_D / 2 + 0.045]}>
         <planeGeometry args={[3.0, 0.375]} />
