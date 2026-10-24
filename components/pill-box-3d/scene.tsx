@@ -31,9 +31,10 @@ function useFitDistance(): number {
     const aspect = size.width / Math.max(size.height, 1);
     const vfov = (camera.fov * Math.PI) / 180;
     const hfov = 2 * Math.atan(Math.tan(vfov / 2) * aspect);
-    const fitWidth = (TRAY_W * 0.64) / Math.tan(hfov / 2);
-    const fitHeight = (SCENE_H * 0.5) / Math.tan(vfov / 2);
-    return Math.max(fitWidth, fitHeight);
+    // Extra margin so orbit + float bobbing never clip the tray against the canvas.
+    const fitWidth = (TRAY_W * 0.78) / Math.tan(hfov / 2);
+    const fitHeight = (SCENE_H * 0.72) / Math.tan(vfov / 2);
+    return Math.max(fitWidth, fitHeight) * 1.12;
   }, [size.width, size.height, camera.fov]);
 }
 
@@ -143,10 +144,10 @@ export function PillBoxScene({
 
       <Float
         enabled={!reduce}
-        speed={1.3}
-        rotationIntensity={0.18}
-        floatIntensity={0.45}
-        floatingRange={[-0.07, 0.07]}
+        speed={1.15}
+        rotationIntensity={0.12}
+        floatIntensity={0.28}
+        floatingRange={[-0.04, 0.04]}
       >
         <Tray
           projects={projects}
@@ -172,14 +173,14 @@ export function PillBoxScene({
         enablePan={false}
         enableDamping
         dampingFactor={0.08}
-        rotateSpeed={0.6}
-        zoomSpeed={0.6}
-        minDistance={distance * 0.62}
-        maxDistance={distance * 1.45}
-        minPolarAngle={0.42}
-        maxPolarAngle={1.52}
-        minAzimuthAngle={-0.95}
-        maxAzimuthAngle={0.95}
+        rotateSpeed={0.55}
+        zoomSpeed={0.45}
+        minDistance={distance * 0.94}
+        maxDistance={distance * 1.28}
+        minPolarAngle={0.62}
+        maxPolarAngle={1.32}
+        minAzimuthAngle={-0.62}
+        maxAzimuthAngle={0.62}
         target={[0, 0, 0]}
       />
     </>

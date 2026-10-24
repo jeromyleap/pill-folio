@@ -72,7 +72,7 @@ export function Portfolio({ projects }: { projects: Project[] }) {
               aria-hidden
               className="stage-disc pointer-events-none absolute top-[48%] left-1/2 aspect-square w-[min(122%,760px)] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-dashed border-ink/20"
             />
-            <div className="relative mx-auto max-w-xl shrink-0 text-center">
+            <div className="relative z-10 mx-auto max-w-xl shrink-0 text-center">
               <p className="text-[10px] font-extrabold tracking-[0.22em] text-ink-soft uppercase sm:text-xs">
                 nicheleap.com
               </p>
@@ -85,33 +85,36 @@ export function Portfolio({ projects }: { projects: Project[] }) {
             </div>
 
             {projects.length === 0 ? (
-              <p className="relative mt-6 rounded-3xl border-[3px] border-dashed border-ink bg-paper px-6 py-10 text-center text-ink-soft">
+              <p className="relative z-10 mt-6 rounded-3xl border-[3px] border-dashed border-ink bg-paper px-6 py-10 text-center text-ink-soft">
                 The planner is empty. Add a day in <code>data/projects.ts</code>.
               </p>
             ) : (
               <>
-                <div className="relative -mx-3 mt-1 min-h-[260px] flex-1 sm:-mx-8 sm:min-h-[320px] lg:-mx-9 lg:mt-2 lg:h-[min(52dvh,480px)] lg:flex-none">
-                  <PillBox3D
-                    projects={projects}
-                    activeId={activeId}
-                    reduce={reduce}
-                    onSelect={select}
-                    onClear={() => setActiveId(null)}
-                    fallback={
-                      <div className="flex h-full items-center px-3 sm:px-8 lg:px-9">
-                        <div className="w-full">
-                          <PillPlanner
-                            projects={projects}
-                            activeId={activeId}
-                            reduce={reduce}
-                            onSelect={select}
-                          />
+                <div className="relative -mx-3 mt-1 min-h-[300px] flex-1 sm:-mx-8 sm:min-h-[360px] lg:-mx-9 lg:mt-1 lg:h-[min(58dvh,540px)] lg:flex-none">
+                  {/* Taller paint area than the layout slot so orbit/zoom have vertical headroom. */}
+                  <div className="absolute inset-x-0 -top-8 -bottom-6 z-[1] sm:-top-10 sm:-bottom-8 lg:-top-12 lg:-bottom-10">
+                    <PillBox3D
+                      projects={projects}
+                      activeId={activeId}
+                      reduce={reduce}
+                      onSelect={select}
+                      onClear={() => setActiveId(null)}
+                      fallback={
+                        <div className="flex h-full items-center px-3 sm:px-8 lg:px-9">
+                          <div className="w-full">
+                            <PillPlanner
+                              projects={projects}
+                              activeId={activeId}
+                              reduce={reduce}
+                              onSelect={select}
+                            />
+                          </div>
                         </div>
-                      </div>
-                    }
-                  />
+                      }
+                    />
+                  </div>
                 </div>
-                <div className="relative mx-auto mt-2.5 w-full max-w-2xl shrink-0 sm:mt-3">
+                <div className="relative z-10 mx-auto mt-2.5 w-full max-w-2xl shrink-0 sm:mt-3">
                   <DayChips projects={projects} activeId={activeId} onSelect={select} />
                 </div>
               </>
