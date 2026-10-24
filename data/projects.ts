@@ -88,7 +88,9 @@ export const projects: Project[] = [
       "Software Engineering student at Colorado Technical University and a longtime pharmacy operations leader — bridging clinical workflows with modern full-stack web work.",
     value: "Software engineering student. Pharmacy ops leader.",
     tech: ["Python", "React", "TypeScript", "Node.js"],
-    screenshotAlt: "Placeholder for a resume hero portrait or studio photo",
+    screenshot: "/screenshots/resume-hero.jpg",
+    screenshotAlt:
+      "Jeromy Allen Leap banner: Software Engineer & Healthcare Operations Leader, with laptop, pharmacy, and skill pills",
     theme: {
       lid: "#c5dbb8",
       deep: "#6f9468",

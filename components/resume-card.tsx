@@ -16,7 +16,6 @@ import {
 } from "@/data/resume";
 import { BrandDesign } from "@/components/brand-design";
 import { Capsule } from "@/components/capsule";
-import { ScreenshotFrame } from "@/components/screenshot-frame";
 import { useCardFocus } from "@/components/use-card-focus";
 import { cn } from "@/lib/utils";
 
@@ -84,12 +83,26 @@ export function ResumeCard({
       </div>
 
       <div className="grid gap-5 px-4 py-5 sm:px-5 lg:grid-cols-[1.05fr_0.95fr] lg:gap-6">
-        <ScreenshotFrame
-          alt={project.screenshotAlt}
-          illustration={project.illustration}
-          caption="Hero image coming soon"
-          well={project.theme.well}
-        />
+        <figure className="self-start">
+          <div className="overflow-hidden rounded-[22px] border-[3px] border-ink bg-paper shadow-[4px_6px_0_rgba(60,51,43,0.12)]">
+            <div className="flex items-center gap-1.5 border-b-2 border-ink/15 bg-[#fffaf3] px-3 py-2">
+              <span className="size-2.5 rounded-full border-2 border-ink bg-[#f3c3cf]" />
+              <span className="size-2.5 rounded-full border-2 border-ink bg-[#f6dc8e]" />
+              <span className="size-2.5 rounded-full border-2 border-ink bg-[#c5dbb8]" />
+              <span className="ml-2 truncate text-[11px] font-semibold text-ink-soft">
+                Resume hero
+              </span>
+            </div>
+            <div className="bg-[#f4faef]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={project.screenshot}
+                alt={project.screenshotAlt}
+                className="h-auto w-full object-contain"
+              />
+            </div>
+          </div>
+        </figure>
 
         <div className="flex flex-col gap-4">
           <div>
