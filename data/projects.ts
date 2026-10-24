@@ -235,7 +235,7 @@ export const projects: Project[] = [
     logo: "/brand/peachy-clean.png",
     screenshot: "/screenshots/peachy-clean.jpg",
     screenshotAlt:
-      "Peachy Clean sign-in screen: the peach badge logo, “Professional Cleaning Services,” and a warm cream login card",
+      "Peachy Clean homepage: “Spotless spaces, peaceful minds.” beside a welcome sign-in panel",
     theme: {
       lid: "#f7e2a0",
       deep: "#cfa548",
