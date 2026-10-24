@@ -9,6 +9,7 @@ import { Capsule } from "@/components/capsule";
 import { DayChips } from "@/components/day-chips";
 import { PillPlanner } from "@/components/pill-planner";
 import { ProjectCard } from "@/components/project-card";
+import { ScatteredCardPills } from "@/components/scattered-card-pills";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
@@ -40,6 +41,15 @@ export function Portfolio({ projects }: { projects: Project[] }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [activeId]);
 
+  useEffect(() => {
+    if (!activeId) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [activeId]);
+
   function select(id: string) {
     setActiveId((current) => (current === id ? null : id));
   }
@@ -51,16 +61,7 @@ export function Portfolio({ projects }: { projects: Project[] }) {
   }
 
   return (
-    <div
-      className="flex min-h-full flex-col"
-      onClick={(event) => {
-        if (!activeId) return;
-        const target = event.target;
-        if (!(target instanceof Element)) return;
-        if (target.closest("button, a, summary, canvas, #project-panel")) return;
-        setActiveId(null);
-      }}
-    >
+    <div className="flex min-h-full flex-col">
       <SiteHeader />
       <main className="flex-1">
         <section id="planner" className="mx-auto mt-6 w-full max-w-[1040px] px-3 sm:mt-10 sm:px-6">
@@ -115,54 +116,81 @@ export function Portfolio({ projects }: { projects: Project[] }) {
                 <div className="relative mx-auto mt-4 max-w-2xl">
                   <DayChips projects={projects} activeId={activeId} onSelect={select} />
                 </div>
+                <p className="relative mt-5 flex items-center justify-center gap-2 text-center text-sm text-ink-soft">
+                  <span aria-hidden className="inline-flex items-center">
+                    <Capsule a="#c5dbb8" b="#fffaf3" className="-rotate-12" />
+                    <Capsule a="#d9c8f0" b="#f8c8a8" className="-ml-1 rotate-12" />
+                  </span>
+                  Pick a lid — the day spills out over the box.
+                </p>
               </>
             )}
           </div>
         </section>
-
-        <section
-          id="project-panel"
-          aria-live="polite"
-          className="mx-auto w-full max-w-[1040px] px-3 pt-6 pb-16 sm:px-6"
-        >
-          <AnimatePresence mode="wait" initial={false}>
-            {active ? (
-              <motion.div
-                key={active.id}
-                initial={reduce ? { opacity: 0 } : { opacity: 0, y: 48, scale: 0.98 }}
-                animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
-                exit={reduce ? { opacity: 0 } : { opacity: 0, y: 24, scale: 0.99 }}
-                transition={
-                  reduce
-                    ? { duration: 0.15 }
-                    : { type: "spring", stiffness: 260, damping: 26, delay: 0.12 }
-                }
-              >
-                <ProjectCard project={active} onClose={close} />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="empty"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="flex flex-col items-center gap-3 rounded-[28px] border-[3px] border-dashed border-ink/40 bg-paper/60 px-6 py-10 text-center"
-              >
-                <span aria-hidden className="flex items-center">
-                  <Capsule a="#c5dbb8" b="#fffaf3" className="-rotate-12" />
-                  <Capsule a="#d9c8f0" b="#f8c8a8" className="-ml-1 rotate-12" />
-                  <Capsule a="#b9d7e8" b="#f7e2a0" className="-ml-1 -rotate-6" />
-                </span>
-                <p className="font-display text-xl text-ink sm:text-2xl">No day open yet</p>
-                <p className="max-w-sm text-sm leading-relaxed text-ink-soft">
-                  Pick a lid on the box or a day above. Its project slides in here.
-                </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </section>
       </main>
       <SiteFooter />
+
+      <AnimatePresence>
+        {active ? (
+          <motion.div
+            key="spill-overlay"
+            className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto overscroll-contain px-3 py-6 sm:items-center sm:px-6 sm:py-10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduce ? 0.12 : 0.2 }}
+          >
+            <button
+              type="button"
+              aria-label="Close project card"
+              className="absolute inset-0 bg-[#3c332b]/45 backdrop-blur-[2px]"
+              onClick={close}
+            />
+            <div className="relative z-10 my-auto w-full max-w-[960px]">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={active.id}
+                  id="project-panel"
+                  role="dialog"
+                  aria-modal="true"
+                  aria-label={active.title}
+                  className="relative"
+                  initial={
+                    reduce
+                      ? { opacity: 0 }
+                      : { opacity: 0, scale: 0.28, y: 36, filter: "blur(6px)" }
+                  }
+                  animate={
+                    reduce
+                      ? { opacity: 1 }
+                      : { opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }
+                  }
+                  exit={
+                    reduce
+                      ? { opacity: 0 }
+                      : { opacity: 0, scale: 0.72, y: 18, filter: "blur(4px)" }
+                  }
+                  transition={
+                    reduce
+                      ? { duration: 0.15 }
+                      : {
+                          type: "spring",
+                          stiffness: 220,
+                          damping: 22,
+                          mass: 0.9,
+                          delay: 0.22,
+                        }
+                  }
+                  style={{ transformOrigin: "50% 35%" }}
+                >
+                  <ScatteredCardPills theme={active.theme} />
+                  <ProjectCard project={active} onClose={close} />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </div>
   );
 }
