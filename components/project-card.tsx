@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { ArrowUpRight, X } from "lucide-react";
 
 import { stackLabel, type Project } from "@/data/projects";
@@ -30,41 +30,31 @@ export function ProjectCard({
       : "Illustrated preview";
 
   useEffect(() => {
-    closeRef.current?.focus();
-  }, [project.id]);
-
-  function trapTab(event: KeyboardEvent<HTMLDivElement>) {
-    if (event.key !== "Tab" || !cardRef.current) return;
-    const focusable = [
-      ...cardRef.current.querySelectorAll<HTMLElement>(
-        'a[href], button:not([disabled]), summary, [tabindex]:not([tabindex="-1"])',
-      ),
-    ].filter((node) => !node.hasAttribute("disabled"));
-    if (focusable.length === 0) return;
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-    if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault();
-      last.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault();
-      first.focus();
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const hidden = rect.top > window.innerHeight - 120 || rect.bottom < 80;
+    if (hidden) {
+      card.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
+        block: "start",
+      });
     }
-  }
+    closeRef.current?.focus({ preventScroll: true });
+  }, [project.id]);
 
   return (
     <div
       ref={cardRef}
       id="project-card"
-      role="dialog"
-      aria-modal="true"
+      role="region"
       aria-labelledby={titleId}
-      onKeyDown={trapTab}
-      onClick={(event) => event.stopPropagation()}
-      className="flex max-h-[min(46dvh,430px)] flex-col overflow-hidden rounded-[28px] border-[3px] border-ink bg-paper shadow-[0_24px_60px_rgba(60,51,43,0.22)] sm:max-h-[min(44vh,520px)]"
+      className="scroll-mt-20 overflow-hidden rounded-[28px] border-[3px] border-ink bg-paper shadow-[0_18px_40px_rgba(60,51,43,0.16)]"
     >
       <div
-        className="flex shrink-0 items-start justify-between gap-3 border-b-2 border-ink/10 px-4 py-3 sm:px-5"
+        className="flex items-start justify-between gap-3 border-b-2 border-ink/10 px-4 py-3 sm:px-5"
         style={{ backgroundColor: project.theme.lid }}
       >
         <div className="min-w-0">
@@ -101,7 +91,7 @@ export function ProjectCard({
         </div>
       </div>
 
-      <div className="min-h-0 flex-1 overflow-y-auto px-4 py-4 sm:px-5 sm:py-5">
+      <div className="px-4 py-4 sm:px-5 sm:py-5">
         <div className={cn("grid gap-5", project.kind === "about" ? "" : "lg:grid-cols-[1.05fr_0.95fr]")}>
           {project.kind !== "about" ? (
             <ScreenshotFrame
