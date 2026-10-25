@@ -155,12 +155,17 @@ export function Portfolio({ projects }: { projects: Project[] }) {
             key="spill-overlay"
             className="fixed inset-0 z-50"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{
-              duration: reduce ? 0.12 : 0.4,
-              // Dim arrives as the zoom accelerates after the spill.
-              delay: reduce ? 0.45 : 0.95,
+            animate={{
+              opacity: 1,
+              transition: {
+                duration: reduce ? 0.12 : 0.4,
+                // Dim arrives as the zoom accelerates after the spill.
+                delay: reduce ? 0.45 : 0.95,
+              },
+            }}
+            exit={{
+              opacity: 0,
+              transition: { duration: reduce ? 0.1 : 0.16, delay: 0 },
             }}
           >
             {/* Viewport-locked dim/blur — stays put while the card scrollport moves */}
@@ -198,7 +203,7 @@ export function Portfolio({ projects }: { projects: Project[] }) {
                     }
                     animate={
                       reduce
-                        ? { opacity: 1 }
+                        ? { opacity: 1, transition: { duration: 0.18, delay: 0.45 } }
                         : {
                             // Two beats: slow crawl out of the tray with the spill,
                             // then a fast zoom into the settled card.
@@ -209,33 +214,32 @@ export function Portfolio({ projects }: { projects: Project[] }) {
                             rotateX: [64, 38, 0],
                             rotateZ: [-4, -1.5, 0],
                             filter: ["blur(18px)", "blur(9px)", "blur(0px)"],
+                            transition: {
+                              // Start with the first pills (~0.18s). Mid keyframe (~1.05s
+                              // wall time) lands as the spill settles, then the zoom runs.
+                              delay: 0.18,
+                              duration: 1.75,
+                              times: [0, 0.5, 1],
+                              ease: [
+                                [0.4, 0.0, 0.55, 1], // slow creep while pills spill
+                                [0.12, 0.85, 0.2, 1], // accelerate into place
+                              ],
+                            },
                           }
                     }
                     exit={
                       reduce
-                        ? { opacity: 0 }
+                        ? { opacity: 0, transition: { duration: 0.1, delay: 0 } }
                         : {
                             opacity: 0,
-                            scale: 0.16,
-                            x: spillOrigin.x * 0.4,
-                            y: spillOrigin.y * 0.4 + 20,
-                            rotateX: 26,
-                            filter: "blur(8px)",
-                          }
-                    }
-                    transition={
-                      reduce
-                        ? { duration: 0.18, delay: 0.45 }
-                        : {
-                            // Start with the first pills (~0.18s). Mid keyframe (~1.05s
-                            // wall time) lands as the spill settles, then the zoom runs.
-                            delay: 0.18,
-                            duration: 1.75,
-                            times: [0, 0.5, 1],
-                            ease: [
-                              [0.4, 0.0, 0.55, 1], // slow creep while pills spill
-                              [0.12, 0.85, 0.2, 1], // accelerate into place
-                            ],
+                            scale: 0.94,
+                            y: 10,
+                            filter: "blur(3px)",
+                            transition: {
+                              duration: 0.18,
+                              delay: 0,
+                              ease: [0.4, 0, 1, 1],
+                            },
                           }
                     }
                     style={{
