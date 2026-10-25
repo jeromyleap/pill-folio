@@ -252,8 +252,8 @@ export const projects: Project[] = [
     description:
       "I'm Jeromy - a 20-year pharmacy operations vet turned software engineering student at Colorado Technical University. By day, I build full-stack tools and health-tech workflows; by night, I’m either pit-side shooting alternative and hardcore shows as crowdside.j, testing out weekend recipes on the stove, or hanging out in St. Petersburg with my partner DJ and our blue-nose pitbull, Azul.",
     value: "Rx for clean code and heavy riffs.",
-    tech: ["crowdside.j", "Azul", "Home cooking"],
-    screenshotAlt: "Illustrated scenes of photography, Azul, and home cooking",
+    tech: ["crowdside.j", "Azul", "Me and DJ"],
+    screenshotAlt: "Photos of crowdside.j, Azul, and Me and DJ",
     theme: {
       lid: "#aedfd0",
       deep: "#4f9a87",
