@@ -21,26 +21,68 @@ export default function AppleIcon() {
       >
         <div
           style={{
-            width: 128,
-            height: 56,
-            borderRadius: 999,
-            border: `6px solid ${INK}`,
-            background: "linear-gradient(90deg, #f6dc8e 0 50%, #fffaf3 50% 100%)",
-            boxShadow: `4px 6px 0 rgba(60,51,43,0.2)`,
             display: "flex",
-            alignItems: "flex-start",
-            paddingTop: 8,
-            paddingLeft: 18,
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative",
+            width: 148,
+            height: 110,
           }}
         >
           <div
             style={{
-              width: 28,
-              height: 12,
+              position: "absolute",
+              left: 8,
+              top: 28,
+              width: 96,
+              height: 42,
               borderRadius: 999,
-              background: "rgba(255,255,255,0.85)",
+              border: `5px solid ${INK}`,
+              background: "linear-gradient(90deg, #f6dc8e 0 50%, #fffaf3 50% 100%)",
+              transform: "rotate(-18deg)",
+              boxShadow: "4px 5px 0 rgba(60,51,43,0.18)",
+              display: "flex",
+              alignItems: "flex-start",
+              paddingTop: 7,
+              paddingLeft: 14,
             }}
-          />
+          >
+            <div
+              style={{
+                width: 22,
+                height: 10,
+                borderRadius: 999,
+                background: "rgba(255,255,255,0.85)",
+              }}
+            />
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              right: 8,
+              top: 36,
+              width: 96,
+              height: 42,
+              borderRadius: 999,
+              border: `5px solid ${INK}`,
+              background: "linear-gradient(90deg, #d9c8f0 0 50%, #f3c3cf 50% 100%)",
+              transform: "rotate(18deg)",
+              boxShadow: "4px 5px 0 rgba(60,51,43,0.18)",
+              display: "flex",
+              alignItems: "flex-start",
+              paddingTop: 7,
+              paddingLeft: 14,
+            }}
+          >
+            <div
+              style={{
+                width: 22,
+                height: 10,
+                borderRadius: 999,
+                background: "rgba(255,255,255,0.85)",
+              }}
+            />
+          </div>
         </div>
       </div>
     ),
