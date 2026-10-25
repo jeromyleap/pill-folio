@@ -248,7 +248,7 @@ export const projects: Project[] = [
     title: "About Me",
     eyebrow: "Jeromy",
     description:
-      "I'm Jeromy. I study computer science and software engineering, and I build niche products under the name nicheleap. Away from the editor I photograph from the crowd as crowd-side j, cook at home, and share the place with my partner DJ and my dog, Azul.",
+      "I'm Jeromy - a 20-year pharmacy operations vet turned software engineering student at Colorado Technical University. By day, I build full-stack tools and health-tech workflows; by night, I’m either pit-side shooting alternative and hardcore shows as crowd-side j, testing out weekend recipes on the stove, or hanging out in St. Petersburg with my partner DJ and our blue-nose pitbull, Azul.",
     value: "Rx for clean code and heavy riffs.",
     tech: ["crowd-side j", "Azul", "Home cooking"],
     screenshotAlt: "Illustrated scenes of photography, Azul, and home cooking",
