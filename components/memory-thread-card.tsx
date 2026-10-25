@@ -5,7 +5,11 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, ChevronDown, X } from "lucide-react";
 
 import type { Project } from "@/data/projects";
-import { memoryThreadCaseStudy as brief, memoryThreadDesign } from "@/data/memory-thread";
+import {
+  memoryThreadCaseStudy as brief,
+  memoryThreadDesign,
+  memoryThreadSocial,
+} from "@/data/memory-thread";
 import { useCardFocus } from "@/components/use-card-focus";
 import { BrandDesign } from "@/components/brand-design";
 import { HeroMediaLink } from "@/components/hero-media-link";
@@ -143,35 +147,54 @@ export function MemoryThreadCard({
             fonts={[...memoryThreadDesign.fonts]}
           />
 
-          <div className="mt-auto flex flex-wrap gap-2 pt-1">
-            {project.liveUrl ? (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noreferrer"
+          <div className="mt-auto flex flex-col gap-3 pt-1">
+            <div className="flex flex-wrap gap-2">
+              {project.liveUrl ? (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={cn(
+                    "inline-flex h-11 items-center gap-1.5 rounded-full px-5 text-sm font-semibold text-[#020617] shadow-[0_8px_28px_rgba(197,173,126,0.25)] transition-transform hover:-translate-y-0.5 motion-reduce:hover:translate-y-0",
+                    focusRing,
+                  )}
+                  style={{ backgroundImage: BRONZE_GRADIENT }}
+                >
+                  {brief.cta}
+                  <ArrowUpRight className="size-4" />
+                </a>
+              ) : null}
+              <button
+                type="button"
+                aria-expanded={notesOpen}
+                aria-controls={notesId}
+                onClick={() => setNotesOpen((open) => !open)}
                 className={cn(
-                  "inline-flex h-11 items-center gap-1.5 rounded-full px-5 text-sm font-semibold text-[#020617] shadow-[0_8px_28px_rgba(197,173,126,0.25)] transition-transform hover:-translate-y-0.5 motion-reduce:hover:translate-y-0",
+                  "inline-flex h-11 items-center gap-1.5 rounded-full border border-[#c5ad7e]/30 bg-white/[0.03] px-5 text-sm font-semibold text-[#f5f5f4] transition-colors hover:bg-white/[0.08]",
                   focusRing,
                 )}
-                style={{ backgroundImage: BRONZE_GRADIENT }}
               >
-                {brief.cta}
-                <ArrowUpRight className="size-4" />
-              </a>
-            ) : null}
-            <button
-              type="button"
-              aria-expanded={notesOpen}
-              aria-controls={notesId}
-              onClick={() => setNotesOpen((open) => !open)}
-              className={cn(
-                "inline-flex h-11 items-center gap-1.5 rounded-full border border-[#c5ad7e]/30 bg-white/[0.03] px-5 text-sm font-semibold text-[#f5f5f4] transition-colors hover:bg-white/[0.08]",
-                focusRing,
-              )}
-            >
-              {notesOpen ? "Close the archive notes" : "Read the archive notes"}
-              <ChevronDown className={cn("size-4 transition-transform", notesOpen && "rotate-180")} />
-            </button>
+                {notesOpen ? "Close the archive notes" : "Read the archive notes"}
+                <ChevronDown className={cn("size-4 transition-transform", notesOpen && "rotate-180")} />
+              </button>
+            </div>
+            <div className="flex items-center gap-2">
+              {memoryThreadSocial.map((social) => (
+                <a
+                  key={social.id}
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={social.label}
+                  className={cn(
+                    "grid size-10 place-items-center rounded-full border border-[#c5ad7e]/30 bg-white/[0.03] text-[#dfcca7] transition-colors hover:border-[#c5ad7e]/55 hover:bg-white/[0.08] hover:text-[#f5f5f4]",
+                    focusRing,
+                  )}
+                >
+                  {social.id === "facebook" ? <FacebookIcon /> : <TikTokIcon />}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -253,5 +276,21 @@ function ArchiveNotes() {
         ))}
       </ul>
     </div>
+  );
+}
+
+function FacebookIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden className="size-4 fill-current">
+      <path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1Z" />
+    </svg>
+  );
+}
+
+function TikTokIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden className="size-4 fill-current">
+      <path d="M19.6 8.2a6.4 6.4 0 0 1-3.7-1.2v6.4a5.7 5.7 0 1 1-4.9-5.6v3a2.7 2.7 0 1 0 1.9 2.6V2.5h3a3.4 3.4 0 0 0 .2 1.1 3.5 3.5 0 0 0 3.5 2.5v2.1Z" />
+    </svg>
   );
 }

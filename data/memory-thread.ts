@@ -19,6 +19,19 @@ export const memoryThreadDesign = {
   ],
 } as const;
 
+export const memoryThreadSocial = [
+  {
+    id: "facebook",
+    label: "The Memory Thread on Facebook",
+    href: "https://www.facebook.com/profile.php?id=61590059714887",
+  },
+  {
+    id: "tiktok",
+    label: "The Memory Thread on TikTok",
+    href: "https://www.tiktok.com/@thememorythread",
+  },
+] as const;
+
 export const memoryThreadCaseStudy = {
   tagline: "Built for quiet moments.",
   inscription: "Preserved in light",
