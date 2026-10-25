@@ -281,16 +281,16 @@ function ArchiveNotes() {
 
 function FacebookIcon() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden className="size-4 fill-current">
-      <path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H8v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1Z" />
+    <svg viewBox="0 0 24 24" aria-hidden className="size-[18px] fill-current">
+      <path d="M22 12.07C22 6.48 17.52 2 11.93 2S1.86 6.48 1.86 12.07c0 5.02 3.66 9.18 8.44 9.93v-7.03H7.9v-2.9h2.4V9.86c0-2.37 1.41-3.68 3.57-3.68 1.03 0 2.12.19 2.12.19v2.33h-1.2c-1.18 0-1.55.73-1.55 1.48v1.78h2.64l-.42 2.9h-2.22V22c4.78-.75 8.44-4.91 8.44-9.93Z" />
     </svg>
   );
 }
 
 function TikTokIcon() {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden className="size-4 fill-current">
-      <path d="M19.6 8.2a6.4 6.4 0 0 1-3.7-1.2v6.4a5.7 5.7 0 1 1-4.9-5.6v3a2.7 2.7 0 1 0 1.9 2.6V2.5h3a3.4 3.4 0 0 0 .2 1.1 3.5 3.5 0 0 0 3.5 2.5v2.1Z" />
+    <svg viewBox="0 0 24 24" aria-hidden className="size-[18px] fill-current">
+      <path d="M21 8.2a7.1 7.1 0 0 1-4.1-1.3v7.1a6.3 6.3 0 1 1-5.4-6.2v3.3a3 3 0 1 0 2.1 2.9V2.8h3.3c.1.7.4 1.4.9 2a3.9 3.9 0 0 0 3.2 1.4V8.2Z" />
     </svg>
   );
 }
