@@ -69,7 +69,9 @@ export function BrandDesign({
             <li key={`${font.role}-${font.name}`} className="min-w-0">
               <p
                 className={cn(
-                  "truncate text-[15px] leading-tight font-bold",
+                  "text-[15px] leading-tight font-bold",
+                  // Script samples need room for flourishes — don't clip them.
+                  font.className?.includes("script") ? "overflow-visible py-0.5" : "truncate",
                   dark ? "text-[#F1F5F9]" : "text-[#09090b]",
                   font.className,
                 )}

@@ -15,7 +15,7 @@ export const memoryThreadDesign = {
   fonts: [
     { name: "Playfair Display", role: "Headings & quotes", className: "font-memory-serif" },
     { name: "Inter", role: "Body & UI", className: "font-memory-sans" },
-    { name: "Great Vibes", role: "Inscriptions", className: "font-memory-script text-2xl leading-none" },
+    { name: "Great Vibes", role: "Inscriptions", className: "font-memory-script text-lg leading-snug" },
   ],
 } as const;
 
