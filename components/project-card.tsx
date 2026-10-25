@@ -203,29 +203,51 @@ function PastelCard({
 
         {project.gallery ? (
           <ul className="mt-5 grid gap-4 sm:grid-cols-3">
-            {project.gallery.map((item) => (
-              <li key={item.id} style={{ transform: `rotate(${item.tilt}deg)` }}>
-                <figure className="rounded-[22px] border-[3px] border-ink bg-white p-2.5 shadow-[4px_5px_0_rgba(60,51,43,0.12)]">
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border-2 border-ink bg-[#fff6dc]">
-                    {item.image ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={item.image} alt={item.caption} className="h-full w-full object-cover" />
+            {project.gallery.map((item) => {
+              const media = (
+                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border-2 border-ink bg-[#fff6dc]">
+                  {item.image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={item.image}
+                      alt={item.caption}
+                      className="h-full w-full object-cover transition-[transform,filter] duration-300 group-hover/gallery:scale-[1.03] group-hover/gallery:brightness-[1.04] motion-reduce:group-hover/gallery:scale-100"
+                    />
+                  ) : (
+                    <GalleryArt id={item.illustration} />
+                  )}
+                  {item.image ? null : (
+                    <span className="absolute top-2 left-2 rounded-full border-2 border-ink bg-paper px-2 py-0.5 text-[10px] font-extrabold tracking-wide uppercase">
+                      Illustrated
+                    </span>
+                  )}
+                </div>
+              );
+
+              return (
+                <li key={item.id} style={{ transform: `rotate(${item.tilt}deg)` }}>
+                  <figure className="rounded-[22px] border-[3px] border-ink bg-white p-2.5 shadow-[4px_5px_0_rgba(60,51,43,0.12)]">
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`Open ${item.caption}`}
+                        className="group/gallery block rounded-2xl outline-none transition-[transform,filter,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_0_3px_rgba(174,223,208,0.55),0_10px_28px_rgba(60,51,43,0.16)] focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 motion-reduce:hover:translate-y-0"
+                      >
+                        {media}
+                      </a>
                     ) : (
-                      <GalleryArt id={item.illustration} />
+                      media
                     )}
-                    {item.image ? null : (
-                      <span className="absolute top-2 left-2 rounded-full border-2 border-ink bg-paper px-2 py-0.5 text-[10px] font-extrabold tracking-wide uppercase">
-                        Illustrated
-                      </span>
-                    )}
-                  </div>
-                  <figcaption className="px-1 pt-2 pb-1">
-                    <p className="font-display text-lg leading-none">{item.caption}</p>
-                    <p className="mt-1 text-sm leading-snug text-ink-soft">{item.detail}</p>
-                  </figcaption>
-                </figure>
-              </li>
-            ))}
+                    <figcaption className="px-1 pt-2 pb-1">
+                      <p className="font-display text-lg leading-none">{item.caption}</p>
+                      <p className="mt-1 text-sm leading-snug text-ink-soft">{item.detail}</p>
+                    </figcaption>
+                  </figure>
+                </li>
+              );
+            })}
           </ul>
         ) : null}
       </div>
