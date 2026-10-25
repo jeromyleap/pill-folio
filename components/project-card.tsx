@@ -103,7 +103,7 @@ function PastelCard({
               target="_blank"
               rel="noreferrer"
               aria-label={social.label}
-              className="grid size-10 place-items-center rounded-full border-2 border-ink bg-paper text-ink transition-colors hover:bg-cream"
+              className="grid size-10 place-items-center rounded-full border-2 border-ink bg-paper text-ink shadow-[0_0_0_1px_rgba(174,223,208,0.55),0_0_16px_rgba(127,196,173,0.45)] transition-[background-color,box-shadow] hover:bg-cream hover:shadow-[0_0_0_1px_rgba(174,223,208,0.75),0_0_22px_rgba(127,196,173,0.55)]"
             >
               {social.id === "facebook" ? <FacebookIcon /> : <TikTokIcon />}
             </a>
@@ -115,7 +115,7 @@ function PastelCard({
             size="icon"
             aria-label="Close"
             onClick={onClose}
-            className="size-10 rounded-full border-2 border-ink bg-paper"
+            className="size-10 rounded-full border-2 border-ink bg-paper shadow-[0_0_0_1px_rgba(174,223,208,0.55),0_0_16px_rgba(127,196,173,0.45)] transition-[background-color,box-shadow] hover:bg-cream hover:shadow-[0_0_0_1px_rgba(174,223,208,0.75),0_0_22px_rgba(127,196,173,0.55)]"
           >
             <X />
           </Button>

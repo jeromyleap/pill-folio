@@ -89,7 +89,7 @@ export function MemoryThreadCard({
               rel="noreferrer"
               aria-label={social.label}
               className={cn(
-                "grid size-10 place-items-center rounded-full border border-[#c5ad7e]/35 bg-white/[0.04] text-[#dfcca7] transition-colors hover:border-[#c5ad7e]/6 hover:bg-white/[0.1] hover:text-[#f5f5f4]",
+                "grid size-10 place-items-center rounded-full border border-[#c5ad7e]/55 bg-white/[0.04] text-[#dfcca7] shadow-[0_0_0_1px_rgba(197,173,126,0.35),0_0_18px_rgba(197,173,126,0.45)] transition-[background-color,box-shadow,color] hover:bg-white/[0.1] hover:text-[#f5f5f4] hover:shadow-[0_0_0_1px_rgba(197,173,126,0.55),0_0_24px_rgba(245,158,11,0.4)]",
                 focusRing,
               )}
             >
@@ -102,7 +102,7 @@ export function MemoryThreadCard({
             aria-label="Close"
             onClick={onClose}
             className={cn(
-              "grid size-10 place-items-center rounded-full border border-white/10 bg-white/[0.04] text-[#f5f5f4] transition-colors hover:bg-white/10",
+              "grid size-10 place-items-center rounded-full border border-[#c5ad7e]/55 bg-white/[0.04] text-[#dfcca7] shadow-[0_0_0_1px_rgba(197,173,126,0.35),0_0_18px_rgba(197,173,126,0.45)] transition-[background-color,box-shadow,color] hover:bg-white/[0.1] hover:text-[#f5f5f4] hover:shadow-[0_0_0_1px_rgba(197,173,126,0.55),0_0_24px_rgba(245,158,11,0.4)]",
               focusRing,
             )}
           >

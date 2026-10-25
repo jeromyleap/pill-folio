@@ -76,7 +76,7 @@ export function WristedCard({
               rel="noreferrer"
               aria-label={social.label}
               className={cn(
-                "grid size-10 place-items-center rounded-full border border-[#C4B5FD]/35 bg-white/5 text-[#C4B5FD] transition-colors hover:border-[#C4B5FD]/65 hover:bg-white/10 hover:text-[#F1F5F9]",
+                "grid size-10 place-items-center rounded-full border border-[#C4B5FD]/55 bg-white/5 text-[#C4B5FD] shadow-[0_0_0_1px_rgba(196,181,253,0.4),0_0_18px_rgba(123,92,250,0.45)] transition-[background-color,box-shadow,color] hover:bg-white/10 hover:text-[#F1F5F9] hover:shadow-[0_0_0_1px_rgba(196,181,253,0.6),0_0_26px_rgba(139,92,246,0.55)]",
                 focusRing,
               )}
             >
@@ -89,7 +89,7 @@ export function WristedCard({
             aria-label="Close"
             onClick={onClose}
             className={cn(
-              "grid size-10 place-items-center rounded-full border border-white/10 bg-white/5 text-[#F1F5F9] transition-colors hover:bg-white/10",
+              "grid size-10 place-items-center rounded-full border border-[#C4B5FD]/55 bg-white/5 text-[#C4B5FD] shadow-[0_0_0_1px_rgba(196,181,253,0.4),0_0_18px_rgba(123,92,250,0.45)] transition-[background-color,box-shadow,color] hover:bg-white/10 hover:text-[#F1F5F9] hover:shadow-[0_0_0_1px_rgba(196,181,253,0.6),0_0_26px_rgba(139,92,246,0.55)]",
               focusRing,
             )}
           >
