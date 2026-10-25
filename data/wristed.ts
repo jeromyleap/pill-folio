@@ -37,6 +37,19 @@ export const wristedBrand = {
   } as const,
 };
 
+export const wristedSocial = [
+  {
+    id: "facebook",
+    label: "Wristed on Facebook",
+    href: "https://www.facebook.com/profile.php?id=61588207101690",
+  },
+  {
+    id: "tiktok",
+    label: "Wristed on TikTok",
+    href: "https://www.tiktok.com/@wristed.app",
+  },
+] as const;
+
 export const wristedCaseStudy = {
   tagline: "Your AI Stylist for Your Wrist.",
   cta: "View live app",

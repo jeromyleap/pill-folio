@@ -5,10 +5,11 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, ChevronDown, X } from "lucide-react";
 
 import type { Project } from "@/data/projects";
-import { wristedBrand, wristedCaseStudy, wristedLooks } from "@/data/wristed";
+import { wristedBrand, wristedCaseStudy, wristedLooks, wristedSocial } from "@/data/wristed";
 import { useCardFocus } from "@/components/use-card-focus";
 import { BrandDesign } from "@/components/brand-design";
 import { HeroMediaLink } from "@/components/hero-media-link";
+import { FacebookIcon, TikTokIcon } from "@/components/social-icons";
 import { cn } from "@/lib/utils";
 
 type Shape = "square" | "round";
@@ -66,18 +67,35 @@ export function WristedCard({
             </h2>
           </div>
         </div>
-        <button
-          ref={closeRef}
-          type="button"
-          aria-label="Close"
-          onClick={onClose}
-          className={cn(
-            "grid size-10 shrink-0 place-items-center rounded-full border border-white/10 bg-white/5 text-[#F1F5F9] transition-colors hover:bg-white/10",
-            focusRing,
-          )}
-        >
-          <X className="size-4" />
-        </button>
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+          {wristedSocial.map((social) => (
+            <a
+              key={social.id}
+              href={social.href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={social.label}
+              className={cn(
+                "grid size-10 place-items-center rounded-full border border-[#C4B5FD]/35 bg-white/5 text-[#C4B5FD] transition-colors hover:border-[#C4B5FD]/65 hover:bg-white/10 hover:text-[#F1F5F9]",
+                focusRing,
+              )}
+            >
+              {social.id === "facebook" ? <FacebookIcon /> : <TikTokIcon />}
+            </a>
+          ))}
+          <button
+            ref={closeRef}
+            type="button"
+            aria-label="Close"
+            onClick={onClose}
+            className={cn(
+              "grid size-10 place-items-center rounded-full border border-white/10 bg-white/5 text-[#F1F5F9] transition-colors hover:bg-white/10",
+              focusRing,
+            )}
+          >
+            <X className="size-4" />
+          </button>
+        </div>
       </div>
 
       <div className="grid gap-5 px-4 py-5 sm:px-5 lg:grid-cols-[1.05fr_0.95fr] lg:gap-6">

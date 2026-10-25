@@ -13,6 +13,7 @@ import {
 import { useCardFocus } from "@/components/use-card-focus";
 import { BrandDesign } from "@/components/brand-design";
 import { HeroMediaLink } from "@/components/hero-media-link";
+import { FacebookIcon, TikTokIcon } from "@/components/social-icons";
 import { cn } from "@/lib/utils";
 
 const GRAIN =
@@ -80,6 +81,21 @@ export function MemoryThreadCard({
           </div>
         </div>
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+          {memoryThreadSocial.map((social) => (
+            <a
+              key={social.id}
+              href={social.href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={social.label}
+              className={cn(
+                "grid size-10 place-items-center rounded-full border border-[#c5ad7e]/35 bg-white/[0.04] text-[#dfcca7] transition-colors hover:border-[#c5ad7e]/6 hover:bg-white/[0.1] hover:text-[#f5f5f4]",
+                focusRing,
+              )}
+            >
+              {social.id === "facebook" ? <FacebookIcon /> : <TikTokIcon />}
+            </a>
+          ))}
           <button
             ref={closeRef}
             type="button"
@@ -147,54 +163,35 @@ export function MemoryThreadCard({
             fonts={[...memoryThreadDesign.fonts]}
           />
 
-          <div className="mt-auto flex flex-col gap-3 pt-1">
-            <div className="flex flex-wrap gap-2">
-              {project.liveUrl ? (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={cn(
-                    "inline-flex h-11 items-center gap-1.5 rounded-full px-5 text-sm font-semibold text-[#020617] shadow-[0_8px_28px_rgba(197,173,126,0.25)] transition-transform hover:-translate-y-0.5 motion-reduce:hover:translate-y-0",
-                    focusRing,
-                  )}
-                  style={{ backgroundImage: BRONZE_GRADIENT }}
-                >
-                  {brief.cta}
-                  <ArrowUpRight className="size-4" />
-                </a>
-              ) : null}
-              <button
-                type="button"
-                aria-expanded={notesOpen}
-                aria-controls={notesId}
-                onClick={() => setNotesOpen((open) => !open)}
+          <div className="mt-auto flex flex-wrap gap-2 pt-1">
+            {project.liveUrl ? (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
                 className={cn(
-                  "inline-flex h-11 items-center gap-1.5 rounded-full border border-[#c5ad7e]/30 bg-white/[0.03] px-5 text-sm font-semibold text-[#f5f5f4] transition-colors hover:bg-white/[0.08]",
+                  "inline-flex h-11 items-center gap-1.5 rounded-full px-5 text-sm font-semibold text-[#020617] shadow-[0_8px_28px_rgba(197,173,126,0.25)] transition-transform hover:-translate-y-0.5 motion-reduce:hover:translate-y-0",
                   focusRing,
                 )}
+                style={{ backgroundImage: BRONZE_GRADIENT }}
               >
-                {notesOpen ? "Close the archive notes" : "Read the archive notes"}
-                <ChevronDown className={cn("size-4 transition-transform", notesOpen && "rotate-180")} />
-              </button>
-            </div>
-            <div className="flex items-center gap-2">
-              {memoryThreadSocial.map((social) => (
-                <a
-                  key={social.id}
-                  href={social.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={social.label}
-                  className={cn(
-                    "grid size-10 place-items-center rounded-full border border-[#c5ad7e]/30 bg-white/[0.03] text-[#dfcca7] transition-colors hover:border-[#c5ad7e]/55 hover:bg-white/[0.08] hover:text-[#f5f5f4]",
-                    focusRing,
-                  )}
-                >
-                  {social.id === "facebook" ? <FacebookIcon /> : <TikTokIcon />}
-                </a>
-              ))}
-            </div>
+                {brief.cta}
+                <ArrowUpRight className="size-4" />
+              </a>
+            ) : null}
+            <button
+              type="button"
+              aria-expanded={notesOpen}
+              aria-controls={notesId}
+              onClick={() => setNotesOpen((open) => !open)}
+              className={cn(
+                "inline-flex h-11 items-center gap-1.5 rounded-full border border-[#c5ad7e]/30 bg-white/[0.03] px-5 text-sm font-semibold text-[#f5f5f4] transition-colors hover:bg-white/[0.08]",
+                focusRing,
+              )}
+            >
+              {notesOpen ? "Close the archive notes" : "Read the archive notes"}
+              <ChevronDown className={cn("size-4 transition-transform", notesOpen && "rotate-180")} />
+            </button>
           </div>
         </div>
       </div>
@@ -279,18 +276,3 @@ function ArchiveNotes() {
   );
 }
 
-function FacebookIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden className="size-[18px] fill-current">
-      <path d="M22 12.07C22 6.48 17.52 2 11.93 2S1.86 6.48 1.86 12.07c0 5.02 3.66 9.18 8.44 9.93v-7.03H7.9v-2.9h2.4V9.86c0-2.37 1.41-3.68 3.57-3.68 1.03 0 2.12.19 2.12.19v2.33h-1.2c-1.18 0-1.55.73-1.55 1.48v1.78h2.64l-.42 2.9h-2.22V22c4.78-.75 8.44-4.91 8.44-9.93Z" />
-    </svg>
-  );
-}
-
-function TikTokIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden className="size-[18px] fill-current">
-      <path d="M21 8.2a7.1 7.1 0 0 1-4.1-1.3v7.1a6.3 6.3 0 1 1-5.4-6.2v3.3a3 3 0 1 0 2.1 2.9V2.8h3.3c.1.7.4 1.4.9 2a3.9 3.9 0 0 0 3.2 1.4V8.2Z" />
-    </svg>
-  );
-}
