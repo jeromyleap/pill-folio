@@ -285,7 +285,7 @@ export const projects: Project[] = [
       {
         id: "me-and-dj",
         caption: "Me and DJ",
-        detail: "Partner in life, and usually somewhere nearby when the weekend starts.",
+        detail: "Partner in life, my best friend. My forever concert buddy.",
         illustration: "cooking",
         image: "/about/me-and-dj.jpg",
         href: "https://www.facebook.com/jeromy.leap",
