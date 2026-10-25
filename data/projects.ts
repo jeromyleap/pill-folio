@@ -249,7 +249,7 @@ export const projects: Project[] = [
     eyebrow: "Jeromy",
     description:
       "I'm Jeromy. I study computer science and software engineering, and I build niche products under the name nicheleap. Away from the editor I photograph from the crowd as crowd-side j, cook at home, and share the place with my partner DJ and my dog, Azul.",
-    value: "Crowd-side photos, Azul, and whatever is on the stove.",
+    value: "Rx for clean code and heavy riffs.",
     tech: ["crowd-side j", "Azul", "Home cooking"],
     screenshotAlt: "Illustrated scenes of photography, Azul, and home cooking",
     theme: {
