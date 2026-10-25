@@ -75,6 +75,11 @@ export type Project = {
   illustration: IllustrationId;
   highlights?: Highlight[];
   gallery?: GalleryItem[];
+  social?: readonly {
+    id: "facebook" | "tiktok";
+    label: string;
+    href: string;
+  }[];
 };
 
 export const projects: Project[] = [
@@ -263,6 +268,13 @@ export const projects: Project[] = [
     },
     kind: "about",
     illustration: "about",
+    social: [
+      {
+        id: "facebook",
+        label: "Jeromy Leap on Facebook",
+        href: "https://www.facebook.com/jeromy.leap",
+      },
+    ],
     gallery: [
       {
         id: "crowd",

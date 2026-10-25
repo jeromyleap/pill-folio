@@ -14,6 +14,7 @@ import { MemoryThreadCard } from "@/components/memory-thread-card";
 import { PeachyCleanCard } from "@/components/peachy-clean-card";
 import { ResumeCard } from "@/components/resume-card";
 import { WristedCard } from "@/components/wristed-card";
+import { FacebookIcon, TikTokIcon } from "@/components/social-icons";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -85,7 +86,7 @@ function PastelCard({
             {project.title}
           </h2>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           {project.logo ? (
             // The mark is a local brand asset with its own dark field.
             // eslint-disable-next-line @next/next/no-img-element
@@ -95,6 +96,18 @@ function PastelCard({
               className="size-11 rounded-full border-2 border-ink object-cover"
             />
           ) : null}
+          {project.social?.map((social) => (
+            <a
+              key={social.id}
+              href={social.href}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={social.label}
+              className="grid size-10 place-items-center rounded-full border-2 border-ink bg-paper text-ink transition-colors hover:bg-cream"
+            >
+              {social.id === "facebook" ? <FacebookIcon /> : <TikTokIcon />}
+            </a>
+          ))}
           <Button
             ref={closeRef}
             type="button"
@@ -165,8 +178,8 @@ function PastelCard({
               </ul>
             </div>
 
-            <div className="flex flex-wrap gap-2">
-              {project.liveUrl ? (
+            {project.liveUrl ? (
+              <div className="flex flex-wrap gap-2">
                 <a
                   href={project.liveUrl}
                   target="_blank"
@@ -179,17 +192,8 @@ function PastelCard({
                   Visit site
                   <ArrowUpRight />
                 </a>
-              ) : (
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={onClose}
-                  className="h-11 rounded-full border-2 border-ink bg-paper px-4"
-                >
-                  Back to the box
-                </Button>
-              )}
-            </div>
+              </div>
+            ) : null}
 
             {project.liveUrl ? (
               <LiveMetadata
@@ -249,6 +253,19 @@ function PastelCard({
               );
             })}
           </ul>
+        ) : null}
+
+        {!project.liveUrl ? (
+          <div className="mt-5 flex justify-center sm:justify-start">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onClose}
+              className="h-11 rounded-full border-2 border-ink bg-paper px-4"
+            >
+              Back to the box
+            </Button>
+          </div>
         ) : null}
       </div>
     </div>
