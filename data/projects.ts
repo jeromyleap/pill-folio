@@ -278,6 +278,8 @@ export const projects: Project[] = [
         caption: "Azul",
         detail: "The dog who supervises the kitchen and the keyboard.",
         illustration: "azul",
+        image: "/about/azul.jpg",
+        href: "https://www.tiktok.com/@azulthebull",
         tilt: 1.6,
       },
       {
