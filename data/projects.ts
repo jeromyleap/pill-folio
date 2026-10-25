@@ -49,6 +49,8 @@ export type GalleryItem = {
   illustration: GalleryIllustration;
   /** Optional real photo. Replaces the illustration when set. */
   image?: string;
+  /** Optional outbound link when the gallery tile is clicked. */
+  href?: string;
   tilt: number;
 };
 
@@ -248,9 +250,9 @@ export const projects: Project[] = [
     title: "About Me",
     eyebrow: "Jeromy",
     description:
-      "I'm Jeromy - a 20-year pharmacy operations vet turned software engineering student at Colorado Technical University. By day, I build full-stack tools and health-tech workflows; by night, I’m either pit-side shooting alternative and hardcore shows as crowd-side j, testing out weekend recipes on the stove, or hanging out in St. Petersburg with my partner DJ and our blue-nose pitbull, Azul.",
+      "I'm Jeromy - a 20-year pharmacy operations vet turned software engineering student at Colorado Technical University. By day, I build full-stack tools and health-tech workflows; by night, I’m either pit-side shooting alternative and hardcore shows as crowdside.j, testing out weekend recipes on the stove, or hanging out in St. Petersburg with my partner DJ and our blue-nose pitbull, Azul.",
     value: "Rx for clean code and heavy riffs.",
-    tech: ["crowd-side j", "Azul", "Home cooking"],
+    tech: ["crowdside.j", "Azul", "Home cooking"],
     screenshotAlt: "Illustrated scenes of photography, Azul, and home cooking",
     theme: {
       lid: "#aedfd0",
@@ -264,9 +266,11 @@ export const projects: Project[] = [
     gallery: [
       {
         id: "crowd",
-        caption: "crowd-side j",
+        caption: "crowdside.j",
         detail: "Photography from inside the crowd, not the barricade.",
         illustration: "crowd",
+        image: "/about/crowdside-j.jpg",
+        href: "https://www.tiktok.com/@crowdside.j",
         tilt: -2,
       },
       {
